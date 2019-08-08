@@ -183,4 +183,4 @@ train_data, labels,test_data, test_labels=daten_umwandeln()
 train_model(train_data,labels, test_data, test_labels)
 ```
 
-| [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [First Model](https://matheli.github.io/BWKI/posts/First_model.html) |
+| [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first Model](https://matheli.github.io/BWKI/posts/First_model.html) |
