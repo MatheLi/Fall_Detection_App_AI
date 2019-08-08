@@ -14,4 +14,4 @@ Image source: https://hackster.imgix.net/uploads/image/file/119494/Fig2.png?auto
 
 
 
-[More details](./posts/More details)
+[More details](./posts/More details.md)
