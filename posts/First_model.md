@@ -225,3 +225,4 @@ differenz=max-min #Differenz bilden (5+differenz=10 -> differenz=10-5)
 predictions=model.predict([differenz[:]])
 print("Vorhersage",np.argmax(predictions[0]))
 ```
+[Go back to homepage](https://matheli.github.io/BWKI/.)
