@@ -4,6 +4,7 @@ Falls those leads to fatal injury have become a great challenge that cannot be n
  
 In this project, a surveillance system based on Arduino, Windows 10 and Microsoft Azure for real-time fall detection is proposed. Raw data of three-dimensional accelerometer are provided by Arduino with ADXL345. Windows 10 device makes use of this information to get the orientation of the subject by efficient data fusion and fall detection algorithms. Microsoft Azure services and Mobile/PC application are also designed to achieve seamless data processing, analyzing, storing and acquiring any time from any place as long as they have access to the Internet. The system architecture is shown is Fig. 1 as follows. 
 ![](https://hackster.imgix.net/uploads/image/file/119494/Fig2.png?auto=compress%2Cformat&w=1280&h=960&fit=max)
+
 * Image source: https://hackster.imgix.net/uploads/image/file/119494/Fig2.png?auto=compress%2Cformat&w=1280&h=960&fit=max 
 
 ``` code 
