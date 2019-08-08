@@ -14,4 +14,4 @@ Image source: https://hackster.imgix.net/uploads/image/file/119494/Fig2.png?auto
 
 
 
-| [For more details click here](./posts/More details.md) | [Code of the first model](./posts/First_model.md) | [Code of the second model](./posts/Second_model.md) | [The team](./posts/The_team/The_team.md) |
+| [More poject details](./posts/More details.md) | [Code of the first model](./posts/First_model.md) | [Code of the second model](./posts/Second_model.md) | [The team](./posts/The_team/The_team.md) |
