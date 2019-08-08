@@ -1,3 +1,4 @@
+```
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jun 11 19:03:06 2019
@@ -223,3 +224,4 @@ min=np.array(min)
 differenz=max-min #Differenz bilden (5+differenz=10 -> differenz=10-5)
 predictions=model.predict([differenz[:]])
 print("Vorhersage",np.argmax(predictions[0]))
+```
