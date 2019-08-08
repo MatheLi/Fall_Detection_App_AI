@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Jun 11 19:03:06 2019
+
+@author: mario
+"""
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
