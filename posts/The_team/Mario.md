@@ -9,7 +9,7 @@ aroused my interest in AI.
 For a change I also do sports, e.g. tennis or cycling. In addition, I dance Standard/Latin at
 a dancing school.
 
-### Some Photos:
+### Some photos:
 
 
 
