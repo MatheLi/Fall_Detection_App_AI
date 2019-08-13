@@ -1,13 +1,13 @@
 # Second model
 ```
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 """
 Created on Sat Jul 13 08:48:29 2019
+
 @author: mario
 """
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import layers
 import os
 import numpy as np
 import pandas as pd
@@ -18,8 +18,10 @@ def einlesen():
     Hier werden alle .csv Dateien in ein Panda-Dataframe eingelesen. Es werden jeweils 3 Versuche von 67 
     Versuchspersonen eingelesen. Sortiert in den verschiedenen Ordnernamen. Außerdem wird geprüft ob,
     es den Pfad überhaupt gibt, denn es fehlen immer wieder einzelne Dateien.
-    """
     
+    Die Funktion gibt Pandas Datenframe nach den Ordnern sotiert zurück.
+    """
+    # CSI + CSO!!!
     #FALLS
     FOL=[]
     FKL=[]
@@ -57,6 +59,9 @@ def label(FOL,FKL,BSC,SDL,CHU,SCH):
     es sich um ein Sturz oder ADL handelt können wir uns an den Ordnernamen orientieren. Da es uns ausreicht 
     erstmal nur vorherszusagen ob jmd. gestürzt ist und nicht die genau Sturzart zu erkennen, vereinfachen wir
     auf zwei Label: 1=Sturz 0=ADL
+    
+    Die Funktion erwartet als Parameter die Pandas Datenframes nach den Ordnern sortiert. Es gibt die Daten (immer noch als Datenframe)
+    zurück, mit der extra Spalte "Label" welche komplett mit "1" oder "0" gefüllt ist.
     """
 # Falls (1)
     for i in range(len(FOL)):
@@ -76,8 +81,11 @@ def label(FOL,FKL,BSC,SDL,CHU,SCH):
 
 def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH): 
     """
+    Da wir nun in den Datenframes auch das Label enthalten haben, können wir uns von der Ordnerstruktur lösen und alles zusammen mischen.
     Hier werden nun alle Dateien aus allen Ordner einem Array hinzugefügt. So ensteht ein großes Array mit
     allen Dateien.
+    
+    Erwartet als Parameter die Datenframes mit den Labels. Und gibt einen Daten_Vektor zurück (gelöst von der Ordnerstruktur)
     """
     daten_vektor=[]
     for i in range(len(FOL)):
@@ -98,15 +106,19 @@ def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH):
 
 def erstelle_daten_matrix(daten_vektor):
     """
-    Hier wird eine Matrix erstellt. An Postition 0 werden die Sensordaten eingefügt (immer noch als Dataframe!)
+    Hier wird eine Matrix erstellt. An Postition 0 werden die Sensordaten eingefügt (immer noch als Dataframe)
     An Position 1 wird das Label eingefügt.
+    Die Matrix sieht ungefähr so aus:
+    Position:      0            1
+                 Datenframes   passendes Label bezogen auf die ganze Datei
     """
     daten_matrix=([],[])
     for i in range(len(daten_vektor)):
         daten_matrix[0].append(daten_vektor[i][["acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"]])
-        daten_matrix[1].append(daten_vektor[i].at[0,"Label"])
+        daten_matrix[1].append(daten_vektor[i].at[0,"Label"]) # Aus der ganzen Spalte wird nur das Label rausgeholt 
         
     return daten_matrix
+
 def daten_umwandeln():
     test=[],[]
     train=[],[]
@@ -136,11 +148,14 @@ def daten_umwandeln():
         test_labels.append(test[1][i])
     test_labels=np.array(test_labels)
     return train_data,labels,test_data, test_labels
+
 def train_model(train_data,labels,test_data, test_labels):
-    
+    """
+    Hier wird ein Keras Model definiert. Die Hyperparameter habe ich durch ein selbstgeschriebenes Programm, welches
+    diese zufällig füllt und dann die Acc prüft, gefunden.
+    """
     model = keras.Sequential([     
-    keras.layers.Flatten(#input_shape=(1,)
-        ), 
+    keras.layers.Flatten(), 
     keras.layers.Masking(mask_value=0.0),
     
     keras.layers.Dense(613, activation=tf.nn.softmax),
@@ -150,7 +165,7 @@ def train_model(train_data,labels,test_data, test_labels):
     
     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     
-    
+    #Hier werden alle Daten auf eine Länge gebracht. Ansonsten kann das Model diese nicht verarbeiten
     train_data=keras.preprocessing.sequence.pad_sequences(train_data, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.0)
     train_data=np.array(train_data)
     test_data=keras.preprocessing.sequence.pad_sequences(test_data, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
@@ -161,17 +176,21 @@ def train_model(train_data,labels,test_data, test_labels):
     model.summary()  
     print(test_labels.shape,labels.shape)
     print(test_data.shape,train_data.shape)
-    #Model mit eigenen Daten testen
+    #Model mit den Test-Daten testen
     test_loss, test_acc = model.evaluate(test_data, test_labels) 
     print('Test accuracy:', test_acc) 
     print('Test loss:', test_loss)
+    """
+    Hier kann man eigene Daten einfügen um eine Vorhersage zu treffen.
     aufnahme_adl=[]
-    aufnahme_adl.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/BSC/BSC_1_1_annotated.txt",dtype=float ,delimiter=",",skiprows=1))
+    
+    aufnahme_adl.append(np.loadtxt("#Pfad (als .txt)",dtype=float ,delimiter=",",skiprows=1))
     aufnahme_adl=keras.preprocessing.sequence.pad_sequences(aufnahme_adl, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
     aufnahme_adl=np.array(aufnahme_adl)
     print(aufnahme_adl.shape)
     predictions=model.predict(aufnahme_adl)
     print("Vorhersage",np.argmax(predictions))
+    """
 # Alle Funktionen werden ausgeführt
 FOL,FKL,BSC,SDL,CHU,SCH=einlesen()
    
