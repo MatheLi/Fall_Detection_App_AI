@@ -4,7 +4,10 @@ It is known to medical science that falls leading to grave or even fatal injury 
 In case that a person has fallen but needs no help the person can also click on the screen function: “Deactivate progress” to inactivate the time counter which will at the end of the count down automatically send an emergency call. In case of a false fall detection where the counter is stopped by the user a additional feedback is given to the AI program. In this way the AI keeps learning and becomes more precise. 
 If the system receives no "answer" by the mobile carrier, it is very likely that a fall has occurred and the person is in need of help due to injury and/or unconsciousness. In this case, after a certain time frame (30 seconds) the app sends an emergency call, by itself, to an emergency hotline with the actual coordinates and data of the phone.  
 
+
+
 ![](xavi.ivars.me/wp-content/uploads/2016/08/machine_learning-1024x724.jpg)
+
 *Source: xavi.ivars.me/wp-content/uploads/2016/08/machine_learning-1024x724.jpg
 
 
