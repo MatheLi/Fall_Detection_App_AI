@@ -6,7 +6,7 @@ If the system receives no "answer" by the mobile carrier, it is very likely that
 
 
 
-![](xavi.ivars.me/wp-content/uploads/2016/08/machine_learning-1024x724.jpg)
+![](https://github.com/MatheLi/BWKI/blob/master/httpxavi.ivars.mewp-contentuploads201608machine_learning-1024x724.jpg)
 
 *Source: xavi.ivars.me/wp-content/uploads/2016/08/machine_learning-1024x724.jpg
 
