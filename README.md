@@ -5,8 +5,7 @@ In case that a person has fallen but needs no help the person can also click on 
 If the system receives no "answer" by the mobile carrier, it is very likely that a fall has occurred and the person is in need of help due to injury and/or unconsciousness. In this case, after a certain time frame (30 seconds) the app sends an emergency call, by itself, to an emergency hotline with the actual coordinates and data of the phone.  
 
 
-
-![](https://github.com/MatheLi/BWKI/blob/master/httpxavi.ivars.mewp-contentuploads201608machine_learning-1024x724.jpg)
+![](https://miro.medium.com/proxy/1*nqSgu7Hg-35NS4AIXz63AQ.jpeg)
 
 *Source: xavi.ivars.me/wp-content/uploads/2016/08/machine_learning-1024x724.jpg
 
