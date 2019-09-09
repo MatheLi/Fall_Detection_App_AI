@@ -1,9 +1,32 @@
 # Second model
+
 ```
+
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@MatheLi 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+
+ 
+1
+1 1 MareSeestern/BWKI-Fall-Detection Private
+ Code  Issues 0  Pull requests 0  Projects 0  Security  Insights
+BWKI-Fall-Detection/aktuelles_Model_mit_pandas_und_allen_Dateien_18082019.py
+ Mare Update Gespräch
+542456d 2 days ago
+288 lines (252 sloc)  14 KB
+    
  # -*- coding: utf-8 -*-
 """
-Created on Sat Jul 13 08:48:29 2019
-
+Created on Sat Jul 18 07:13:56 2019
 @author: mario
 """
 import tensorflow as tf
@@ -12,6 +35,10 @@ import os
 import numpy as np
 import pandas as pd
 import random
+from keras.models import load_model
+from keras.utils import CustomObjectScope
+from keras.initializers import glorot_uniform
+print("GPU Available: ", tf.test.is_gpu_available())
 
 def einlesen(): 
     """
@@ -21,7 +48,7 @@ def einlesen():
     
     Die Funktion gibt Pandas Datenframe nach den Ordnern sotiert zurück.
     """
-    # CSI + CSO!!!
+   
     #FALLS
     FOL=[]
     FKL=[]
@@ -31,29 +58,53 @@ def einlesen():
     #ADL
     CHU=[]
     SCH=[]
-    
-    #weiterhin steht es aus WAL, JOG usw. einzulesen
-    
+    STU=[]
+    STN=[]
+    CSI=[]
+    CSO=[]
+    JOG=[]
+    JUM=[]
+    SIT=[]
+    STD=[]
+    WAL=[]
+
+    #Pfad zu MobiAct_Dataset_v2
+    pfad="C:\\Users\\mario\\Desktop\\BWKI_Github\\BWKI-Fall-Detection\\MobiAct_Dataset_v2"
     #FALLS
-    #FOL
-    
-    FOL=[pd.read_csv("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
+    print("reading")
+    #FOL    
+    FOL=[pd.read_csv(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
     for a in range(1,4)
         for i in range(1,68)
-            if os.path.exists("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a))
+            if os.path.exists(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a))
             ]
-    FKL=[pd.read_csv("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a))]
-    BSC=[pd.read_csv("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a))]
-    SDL=[pd.read_csv("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a))]
-    
+    print("reading")
+    FKL=[pd.read_csv(pfad+"\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    BSC=[pd.read_csv(pfad+"\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    SDL=[pd.read_csv(pfad+"\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
     #ADL
-    CHU=[pd.read_csv("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a))]
-    SCH=[pd.read_csv("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a))]
-    
-    return FOL,FKL,BSC,SDL,CHU,SCH
+    CHU=[pd.read_csv(pfad+"\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a))]
+    SCH=[pd.read_csv(pfad+"\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a))]
+    STU=[pd.read_csv(pfad+"\Annotated Data\STU\STU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\STU\STU_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    STN=[pd.read_csv(pfad+"\Annotated Data\STN\STN_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\STN\STN_{0}_{1}_annotated.csv".format(i,a))]
+    CSI=[pd.read_csv(pfad+"\Annotated Data\CSI\CSI_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CSI\CSI_{0}_{1}_annotated.csv".format(i,a))]
+    CSO=[pd.read_csv(pfad+"\Annotated Data\CSO\CSO_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CSO\CSO_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    JOG=[pd.read_csv(pfad+"\\10s_bearbeitet\\JOG\\JOG_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(0,70) if os.path.exists(pfad+"\\10s_bearbeitet\\JOG\\JOG_{0}_{1}_10s.csv".format(i,a))]
+    JUM=[pd.read_csv(pfad+"\\10s_bearbeitet\\JUM\\JUM_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(0,70) if os.path.exists(pfad+"\\10s_bearbeitet\\JUM\\JUM_{0}_{1}_10s.csv".format(i,a))]
+    SIT=[pd.read_csv(pfad+"\\10s_bearbeitet\\SIT\\SIT_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,7) for i in range(0,19) if os.path.exists(pfad+"\\10s_bearbeitet\\SIT\\SIT_{0}_{1}_10s.csv".format(i,a))]
+    print("reading")
+    STD=[pd.read_csv(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a))]
+    WAL=[pd.read_csv(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a))]
+
+    return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
 
 
-def label(FOL,FKL,BSC,SDL,CHU,SCH): 
+def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
     """
     Hier wird jeder Datei eine weitere Spalte "Label" angehängt. Da wir an dieser Stelle noch wissen, ob 
     es sich um ein Sturz oder ADL handelt können wir uns an den Ordnernamen orientieren. Da es uns ausreicht 
@@ -77,9 +128,27 @@ def label(FOL,FKL,BSC,SDL,CHU,SCH):
         CHU[i]["Label"]=0
     for i in range(len(SCH)):
         SCH[i]["Label"]=0
-    return FOL,FKL,BSC,SDL,CHU,SCH
+    for i in range(len(STU)):
+        STU[i]["Label"]=0
+    for i in range(len(STN)):
+        STN[i]["Label"]=0
+    for i in range(len(CSI)):
+        CSI[i]["Label"]=0   
+    for i in range(len(CSO)):
+        CSO[i]["Label"]=0
+    for i in range(len(JOG)):
+        JOG[i]["Label"]=0
+    for i in range(len(JUM)):
+        JUM[i]["Label"]=0
+    for i in range(len(SIT)):
+        SIT[i]["Label"]=0
+    for i in range(len(STD)):
+        STD[i]["Label"]=0
+    for i in range(len(WAL)):
+        WAL[i]["Label"]=0
+    return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
 
-def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH): 
+def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
     """
     Da wir nun in den Datenframes auch das Label enthalten haben, können wir uns von der Ordnerstruktur lösen und alles zusammen mischen.
     Hier werden nun alle Dateien aus allen Ordner einem Array hinzugefügt. So ensteht ein großes Array mit
@@ -100,6 +169,24 @@ def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH):
         daten_vektor.append(CHU[i])
     for i in range(len(SCH)):
         daten_vektor.append(SCH[i])
+    for i in range(len(STU)):
+        daten_vektor.append(STU[i])
+    for i in range(len(STN)):
+        daten_vektor.append(STN[i])
+    for i in range(len(CSI)):
+        daten_vektor.append(CSI[i])
+    for i in range(len(CSO)):
+        daten_vektor.append(CSO[i])
+    for i in range(len(JOG)):
+        daten_vektor.append(JOG[i])
+    for i in range(len(JUM)):
+        daten_vektor.append(JUM[i])
+    for i in range(len(SIT)):
+        daten_vektor.append(SIT[i])
+    for i in range(len(STD)):
+        daten_vektor.append(STD[i])
+    for i in range(len(WAL)):
+        daten_vektor.append(WAL[i])
     #Hier wird das Array auch noch einmal gemischt, um Stürze und ADL nicht direkt hintereinander zu haben.
     random.shuffle(daten_vektor)
     return daten_vektor
@@ -122,8 +209,8 @@ def erstelle_daten_matrix(daten_vektor):
 def daten_umwandeln():
     test=[],[]
     train=[],[]
-    test = daten_matrix[0][:100],daten_matrix[1][:100] #Hier erfolgt der Split in Train und Test Data
-    train = daten_matrix[0][100:],daten_matrix[1][100:] 
+    test = daten_matrix[0][:400],daten_matrix[1][:400] #Hier erfolgt der Split in Train und Test Data
+    train = daten_matrix[0][400:],daten_matrix[1][400:] 
     
     print("Aufteilen Erfolgreich! Anzahl der Trainingsdaten:{0} und der Testdaten:{1} ".format(len(train[0]),len(test[0]))) 
     """
@@ -158,12 +245,14 @@ def train_model(train_data,labels,test_data, test_labels):
     keras.layers.Flatten(), 
     keras.layers.Masking(mask_value=0.0),
     
-    keras.layers.Dense(613, activation=tf.nn.softmax),
-    keras.layers.Dense(642, activation=tf.nn.softmax), 
+    keras.layers.Dense(109, activation=tf.nn.softsign), 
+    keras.layers.Dense(50, activation=tf.nn.softmax), #2softsign 3softmax 0.90833336 2 109 50 0.002 0.001 90 1-> adams
+     
+ 
     
     ]) 
-    
-    model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.003)
+    model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     
     #Hier werden alle Daten auf eine Länge gebracht. Ansonsten kann das Model diese nicht verarbeiten
     train_data=keras.preprocessing.sequence.pad_sequences(train_data, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.0)
@@ -172,7 +261,8 @@ def train_model(train_data,labels,test_data, test_labels):
     test_data=np.array(test_data)
     
     
-    model.fit(train_data,labels,batch_size=128, epochs=6 )
+    
+    history=model.fit(train_data,labels,validation_split=0.15,batch_size=100, epochs=2000 ) 
     model.summary()  
     print(test_labels.shape,labels.shape)
     print(test_data.shape,train_data.shape)
@@ -180,27 +270,59 @@ def train_model(train_data,labels,test_data, test_labels):
     test_loss, test_acc = model.evaluate(test_data, test_labels) 
     print('Test accuracy:', test_acc) 
     print('Test loss:', test_loss)
-    """
-    Hier kann man eigene Daten einfügen um eine Vorhersage zu treffen.
-    aufnahme_adl=[]
+    visualization(history)
+    #model.save('simple_mlp.pb') 
+    del model  
+    with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
+        model =load_model('simple_mlp.pb') 
+    test_loss, test_acc = model.evaluate(test_data, test_labels) 
+    print('Test accuracy:', test_acc) 
+    print('Test loss:', test_loss)
+def visualization(history):
+    import matplotlib.pyplot as plt
+    # Plot training & validation accuracy values
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
     
-    aufnahme_adl.append(np.loadtxt("#Pfad (als .txt)",dtype=float ,delimiter=",",skiprows=1))
-    aufnahme_adl=keras.preprocessing.sequence.pad_sequences(aufnahme_adl, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
-    aufnahme_adl=np.array(aufnahme_adl)
-    print(aufnahme_adl.shape)
-    predictions=model.predict(aufnahme_adl)
-    print("Vorhersage",np.argmax(predictions))
-    """
+    # Plot training & validation loss values
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+    
 # Alle Funktionen werden ausgeführt
-FOL,FKL,BSC,SDL,CHU,SCH=einlesen()
+FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=einlesen()
    
-FOL,FKL,BSC,SDL,CHU,SCH=label(FOL,FKL,BSC,SDL,CHU,SCH)
+FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
 
-daten_vektor=erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH)
+daten_vektor=erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
 
 daten_matrix=erstelle_daten_matrix(daten_vektor)
 train_data, labels,test_data, test_labels=daten_umwandeln()
 train_model(train_data,labels, test_data, test_labels)
+
+
+© 2019 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+
 ```
 
 | [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first Model](https://matheli.github.io/BWKI/posts/First_model.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
