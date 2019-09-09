@@ -1,24 +1,22 @@
 # First model
 ```
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jun 11 19:03:06 2019
-
-@author: mario
-"""
-
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras import layers
-
+import os
 import numpy as np
+import pandas as pd
+import random
+print("GPU Available: ", tf.test.is_gpu_available())
 
-def einlesen():
+def einlesen(): 
     """
-    liest alle Stürze ein und 2 ADL (CHU und SCH)
-    Anschließend werden alle Textdateien in einer Liste gereiht zurückgegeben
-    Nur die Ordner (also welcher Sturz oder welche ADL) wird getrennt
+    Hier werden alle .csv Dateien in ein Panda-Dataframe eingelesen. Es werden jeweils 3 Versuche von 67 
+    Versuchspersonen eingelesen. Sortiert in den verschiedenen Ordnernamen. Außerdem wird geprüft ob,
+    es den Pfad überhaupt gibt, denn es fehlen immer wieder einzelne Dateien.
+    
+    Die Funktion gibt Pandas Datenframe nach den Ordnern sotiert zurück.
     """
+   
     #FALLS
     FOL=[]
     FKL=[]
@@ -28,203 +26,301 @@ def einlesen():
     #ADL
     CHU=[]
     SCH=[]
-    
+    STU=[]
+    STN=[]
+    CSI=[]
+    CSO=[]
+    JOG=[]
+    JUM=[]
+    SIT=[]
+    STD=[]
+    WAL=[]
+
+    #Pfad zu MobiAct_Dataset_v2
+    pfad="C:\\Users\\mario\\Desktop\\BWKI_Github\\BWKI-Fall-Detection\\MobiAct_Dataset_v2"
     #FALLS
-    #FOL
-    for a in range(1,4): # 3 Trials
-        for i in range(1,68): #67 Subjects
-            if i == 24 or i== 41 or i==50: #Fehlende Dateien (immer 24,41,50??)
-                #do nothing
-                i=i*1
-            else:
-                FOL.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/FOL/FOL_acc_{0}_{1}.txt".format(i,a),dtype=float ,delimiter=",",skiprows=16))
-                # 16 Zeilen Übersprungen, da dort nur Infos, Immer an FOL angehängt
-    #FKL
-    for a in range(1,4):    
-        for i in range(1,68): 
-            if i == 24 or i==41 or i==50:           
-                i=i*1
-            else:
-                FKL.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/FKL/FKL_acc_{0}_{1}.txt".format(i,a),dtype=float ,delimiter=",",skiprows=16))    
-    #BSC
-    for a in range(1,4): 
-        for i in range(1,68): 
-            if i == 24 or i== 41 or i==50 or i==3: 
-                i=i*1
-            else:
-                BSC.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/BSC/BSC_acc_{0}_{1}.txt".format(i,a),dtype=float ,delimiter=",",skiprows=16))    
-     #SDL
-    for a in range(1,4): 
-        for i in range(1,68): 
-           if i == 24 or i== 41 or i==50: 
-               i=i*1
-           else:
-               SDL.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/SDL/SDL_acc_{0}_{1}.txt".format(i,a),dtype=float ,delimiter=",",skiprows=16))    
-
+    print("reading")
+    #FOL    
+    FOL=[pd.read_csv(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
+    for a in range(1,4)
+        for i in range(1,68)
+            if os.path.exists(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a))
+            ]
+    print("reading")
+    FKL=[pd.read_csv(pfad+"\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    BSC=[pd.read_csv(pfad+"\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    SDL=[pd.read_csv(pfad+"\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
     #ADL
-    #CHU
-    for a in range(1,6): #Ab hier 6 Trials!
-        for i in range(1,68): 
-            if i==1 or i==2 or i==3 or i==5 or i==6 or i==12 or i==20 or i==45 or i==53 or i==58 or i>57:
-            # Warum fehlen hier so viele Daten? Achtung hier ist die If-Abfrage umgedreht!
-                CHU.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/CHU/CHU_acc_{0}_{1}.txt".format(i,a),dtype=float ,delimiter=",",skiprows=16))
-            else:
-                i=i*1
-    #SCH
-    for a in range(1,6): 
-        for i in range(1,68): 
-            if i==13 or i==14 or i==15 or i==17 or i==30 or i==31 or i==21 or i==51:
-                i=i*1
-            else:
-                 SCH.append(np.loadtxt("MobiAct_Dataset_v2/Raw Data/SCH/SCH_acc_{0}_{1}.txt".format(i,a),dtype=float ,delimiter=",",skiprows=16))
-    #Kann man sich diesen Teil irgendwie sparen?? Umwandlung in np.arrays()
-    #Falls
-    FOL=np.array(FOL)
-    FKL=np.array(FKL)
-    BSC=np.array(BSC)
-    SDL=np.array(SDL)
-    #ADL
-    CHU=np.array(CHU)
-    SCH=np.array(SCH)
-    return FOL,FKL,BSC,SDL,CHU,SCH #Zurück geben der eingelesenen Ordner
+    CHU=[pd.read_csv(pfad+"\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a))]
+    SCH=[pd.read_csv(pfad+"\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a))]
+    STU=[pd.read_csv(pfad+"\Annotated Data\STU\STU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\STU\STU_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    STN=[pd.read_csv(pfad+"\Annotated Data\STN\STN_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\STN\STN_{0}_{1}_annotated.csv".format(i,a))]
+    CSI=[pd.read_csv(pfad+"\Annotated Data\CSI\CSI_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CSI\CSI_{0}_{1}_annotated.csv".format(i,a))]
+    CSO=[pd.read_csv(pfad+"\Annotated Data\CSO\CSO_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CSO\CSO_{0}_{1}_annotated.csv".format(i,a))]
+    print("reading")
+    JOG=[pd.read_csv(pfad+"\\10s_bearbeitet\\JOG\\JOG_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(0,70) if os.path.exists(pfad+"\\10s_bearbeitet\\JOG\\JOG_{0}_{1}_10s.csv".format(i,a))]
+    JUM=[pd.read_csv(pfad+"\\10s_bearbeitet\\JUM\\JUM_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(0,70) if os.path.exists(pfad+"\\10s_bearbeitet\\JUM\\JUM_{0}_{1}_10s.csv".format(i,a))]
+    SIT=[pd.read_csv(pfad+"\\10s_bearbeitet\\SIT\\SIT_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,7) for i in range(0,19) if os.path.exists(pfad+"\\10s_bearbeitet\\SIT\\SIT_{0}_{1}_10s.csv".format(i,a))]
+    print("reading")
+    STD=[pd.read_csv(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a))]
+    WAL=[pd.read_csv(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a))]
 
-def differenz(Daten):
-    """
-    Bildet aus einem übergebenen Ordner(!) aus jeder .txt Datei eine Differenz 
-    von dem höchten und niedrigsten Punkt, der X-Achse!
-    """
-    max=[]
-    min=[]
-    for a in range(Daten.shape[0]):
-        min.append(np.min(Daten[a][:,1]))  #min den kleinsten Wert aus einer .txt-Datei von der ganzen X-Achse anhängen
-        max.append(np.max(Daten[a][:,1]))
-    max=np.array(max)  #Min und max zu Np.arrays umwandeln- Kann man sich das sparen?
-    min=np.array(min)       
-    differenz=max-min #Differenz bilden (5+differenz=10 -> differenz=10-5)
-    return differenz #Zurückgabe von der Differenz -> pro Textdatei ein Eintrag
+    return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
 
-def daten_aufbereiten(FOL,FKL,BSC,SDL,CHU,SCH):
+
+def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
     """
-    Kennzeichnet die Daten mit einem Label
-    Außerdem wird mit der "differenz(Daten)" Funktion die Differenz der X-Achse 
-    (zwischen dem höchsten und niedrigsten Punkt) gebildet
-    1 steht hier für einen Sturz und steht vor der Differenz
-    0 steht hier für eine ADL und steht ebenfalls vor der Differenz
-    """
-    daten_vektor=[] #Definieren einer Liste
-    #Falls (1)
-    for i in range(FOL.shape[0]): #Anzahl der .txt Dateien (also anzuhängenden Differenzen) ermitteln
-        daten_vektor.append(1) #FOL ist ein Sturz, d.h 1
-        daten_vektor.append(differenz(FOL)[i]) # und hinter die 1 noch die frisch gebildete Differenz schreiben
-    for i in range(FKL.shape[0]):
-        daten_vektor.append(1) # gleich zu FOL
-        daten_vektor.append(differenz(FKL)[i])
-    for i in range(BSC.shape[0]):
-        daten_vektor.append(1)
-        daten_vektor.append(differenz(BSC)[i])
-    for i in range(SDL.shape[0]):
-        daten_vektor.append(1)
-        daten_vektor.append(differenz(SDL)[i])
-    #ADL (0)
-    for i in range(CHU.shape[0]):
-        daten_vektor.append(0) #CHU ist ein Sturz, d.h 0
-        daten_vektor.append(differenz(CHU)[i])# und hinter die 0 noch die frisch gebildete Differenz schreiben
-    for i in range(SCH.shape[0]):
-        daten_vektor.append(0)
-        daten_vektor.append(differenz(SCH)[i])
-    return daten_vektor 
-def matrix_erstellen(daten_vektor):
-    """
-    Um die Daten mit Tensorflow weiter verarbeiten zu können, dürfen sie kein Vektor mehr sein.
-    Deshalb werden sie in eine Matrix umgewandelt...
+    Hier wird jeder Datei eine weitere Spalte "Label" angehängt. Da wir an dieser Stelle noch wissen, ob 
+    es sich um ein Sturz oder ADL handelt können wir uns an den Ordnernamen orientieren. Da es uns ausreicht 
+    erstmal nur vorherszusagen ob jmd. gestürzt ist und nicht die genau Sturzart zu erkennen, vereinfachen wir
+    auf zwei Label: 1=Sturz 0=ADL
     
-    Die daten_matrix sieht so aus (Beispielwerte!):
-        0    1
-        25   1
-        23   1
-        ...  ...
-        15   0
-        Wert Label
-            -> daten_matrix[0] sind die Differenzen des höchsten und niedrigsten Punkt der einzelnen Textdateien (Array!)
-            -> daten_matrix[1] sind die Labels (Array!)
-            Um das passende Label einer Differenz zu finden, muss man nur die Selbe Zeile aus dem Array auswählen
-            -> Passendes Label für den 0. Wert (daten_matrix[0,0]) ist  daten_matrix[1,0]
-            """
-    daten_matrix=([],[]) #Erstellen einer 2D Liste
-    for i in range(1,len(daten_vektor),2): #Alle Differenzen an die 0. Stelle
-        daten_matrix[0].append(daten_vektor[i])    
-    for i in range(0,len(daten_vektor),2): # Und alle Labels an die 1. Stelle
-        daten_matrix[1].append(daten_vektor[i]) 
-    daten_matrix=np.array(daten_matrix) # Kann man sich diesen Teil sparen?
-    print("Die Größe der Matrix ist:",daten_matrix.shape)
+    Die Funktion erwartet als Parameter die Pandas Datenframes nach den Ordnern sortiert. Es gibt die Daten (immer noch als Datenframe)
+    zurück, mit der extra Spalte "Label" welche komplett mit "1" oder "0" gefüllt ist.
+    """
+# Falls (1)
+    for i in range(len(FOL)):
+        FOL[i]["Label"]=1
+    for i in range(len(FKL)):
+        FKL[i]["Label"]=1
+    for i in range(len(BSC)):
+        BSC[i]["Label"]=1
+    for i in range(len(SDL)):
+        SDL[i]["Label"]=1
+    #ADLs (0)
+    for i in range(len(CHU)):
+        CHU[i]["Label"]=0
+    for i in range(len(SCH)):
+        SCH[i]["Label"]=0
+    for i in range(len(STU)):
+        STU[i]["Label"]=0
+    for i in range(len(STN)):
+        STN[i]["Label"]=0
+    for i in range(len(CSI)):
+        CSI[i]["Label"]=0   
+    for i in range(len(CSO)):
+        CSO[i]["Label"]=0
+    for i in range(len(JOG)):
+        JOG[i]["Label"]=0
+    for i in range(len(JUM)):
+        JUM[i]["Label"]=0
+    for i in range(len(SIT)):
+        SIT[i]["Label"]=0
+    for i in range(len(STD)):
+        STD[i]["Label"]=0
+    for i in range(len(WAL)):
+        WAL[i]["Label"]=0
+    return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
+
+def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
+    """
+    Da wir nun in den Datenframes auch das Label enthalten haben, können wir uns von der Ordnerstruktur lösen und alles zusammen mischen.
+    Hier werden nun alle Dateien aus allen Ordner einem Array hinzugefügt. So ensteht ein großes Array mit
+    allen Dateien.
+    
+    Erwartet als Parameter die Datenframes mit den Labels. Und gibt einen Daten_Vektor zurück (gelöst von der Ordnerstruktur)
+    """
+    daten_vektor=[]
+    for i in range(len(FOL)):
+        daten_vektor.append(FOL[i])
+    for i in range(len(FKL)):
+        daten_vektor.append(FKL[i])
+    for i in range(len(BSC)):
+        daten_vektor.append(BSC[i])
+    for i in range(len(SDL)):
+        daten_vektor.append(SDL[i])
+    for i in range(len(CHU)):
+        daten_vektor.append(CHU[i])
+    for i in range(len(SCH)):
+        daten_vektor.append(SCH[i])
+    for i in range(len(STU)):
+        daten_vektor.append(STU[i])
+    for i in range(len(STN)):
+        daten_vektor.append(STN[i])
+    for i in range(len(CSI)):
+        daten_vektor.append(CSI[i])
+    for i in range(len(CSO)):
+        daten_vektor.append(CSO[i])
+    for i in range(len(JOG)):
+        daten_vektor.append(JOG[i])
+    for i in range(len(JUM)):
+        daten_vektor.append(JUM[i])
+    for i in range(len(SIT)):
+        daten_vektor.append(SIT[i])
+    for i in range(len(STD)):
+        daten_vektor.append(STD[i])
+    for i in range(len(WAL)):
+        daten_vektor.append(WAL[i])
+    #Hier wird das Array auch noch einmal gemischt, um Stürze und ADL nicht direkt hintereinander zu haben.
+    random.shuffle(daten_vektor)
+    return daten_vektor
+
+def erstelle_daten_matrix(daten_vektor):
+    """
+    Hier wird eine Matrix erstellt. An Postition 0 werden die Sensordaten eingefügt (immer noch als Dataframe)
+    An Position 1 wird das Label eingefügt.
+    Die Matrix sieht ungefähr so aus:
+    Position:      0            1
+                 Datenframes   passendes Label bezogen auf die ganze Datei
+    """
+    daten_matrix=([],[])
+    for i in range(len(daten_vektor)):
+        daten_matrix[0].append(daten_vektor[i][["acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"]])
+        daten_matrix[1].append(daten_vektor[i].at[0,"Label"]) # Aus der ganzen Spalte wird nur das Label rausgeholt 
+        
     return daten_matrix
-FOL,FKL,BSC,SDL,CHU,SCH=einlesen() # Variabeln einlesen und mit Namen abspeichern
 
-daten_vektor=daten_aufbereiten(FOL,FKL,BSC,SDL,CHU,SCH) #Daten werden für die Klassifizierung mit der X-Achse aufbereitet
-daten_matrix=matrix_erstellen(daten_vektor)
-
-print("Aufteilen der Matrix in Trainingsdaten (~92%) und Test Daten (~8%)")
-
-test = daten_matrix[0,:100],daten_matrix[1,:100] #Die Testdaten sind die ersten 100 Werte
-training= daten_matrix[0,100:],daten_matrix[1,100:] # und die Trainingsdaten die restlichen 1055 Daten
-training=np.array(training) # Kann man sich diesen Teil sparen?
-test=np.array(test) # Kann man sich diesen Teil sparen?
-print("Aufteilen Erfolgreich! Anzahl der Trainingsdaten:{0} und der Testdaten:{1} ".format(training[1].shape,test[1].shape)) 
-
-
-model = keras.Sequential([      #Hier wird das Modell erstellt
-    keras.layers.Flatten(),     #Mit 3 Layern. 
-    #Ich bin mir aktuell mit der "input_size" nicht im klaren. Aber es hat geholfen, nichts anzugeben...
-    keras.layers.Dense(500, activation=tf.nn.relu),  #Layer
-    keras.layers.Dense(10, activation=tf.nn.softmax) #Layer
-    ])
-
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-# Lässt das Model kom­pi­lie­ren und weiterer Einstellungen (z.B Optimizer)
-
-model.fit(training[0], training[1], epochs=9) # Trainieren des Model über 9 Epochen mit den Trainingsdaten
-# ACC ~0.99 auf die Trainingsdaten
-
-test_loss, test_acc = model.evaluate(test[0], test[1]) #Ermitteln von loss und acc an den Test Daten
-#Die können sich von den Werten des Trainings unterscheiden, tun sie aber diesmal nicht...
-print('Test accuracy:', test_acc) #Ebenfalls 0.99, ich schätze, dass liegt daran, weil das Model sehr einfach ist
-print('Test loss:', test_loss) #Loss unterscheidet sich minimal (oder ist einfach nur gerundet...)
-
-#Versuch ob das Model wirklich funktioniert
-print("Versuch ob das Model wirklich funktioniert")
-print("1000. Wert und Label:",training[0,1000],training[1,1000]) #Z.B 1000. Wert ist ~7.432 und ist ein ADL (0)
-predictions=model.predict(training[0]) #Einmal den ganzen Trainingsvektor durchlaufen lassen
-print("Vorhergesagtes Label:",np.argmax(predictions[1000])) # Und das 1000 Label ist auch eine 0
-# Mit eigenem wert
-print("Erfundener Wert: 0.8, sollte ein ADL sein...")
-predictions=model.predict([0.8])
-print("Und es stimmt auch:",np.argmax(predictions[0]))
-
-print("Orginal Aufnahme:")
-adl_aufnahme=[]
-sturz_aufnahme=[]
-adl_aufnahme_differenz=[]
-for i in range(1,4):
-    adl_aufnahme.append(np.loadtxt("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\eigene_aufnahmen\zadl\{0}.txt".format(i),dtype=float ,delimiter=","))
-for i in range(1,4):
-    sturz_aufnahme.append(np.loadtxt("D:\OneDrive\BWKI_Projekt_Arbeit\MobiAct_Dataset_v2\eigene_aufnahmen\sturz\{0}.txt".format(i),dtype=float ,delimiter=","))
-max=[]
-min=[]
-#adl_aufnahme=sturz_aufnahme #unschöne art sich Code zu sparen
-adl_aufnahme=np.array(adl_aufnahme)
-
-
-for a in range(3):
-    min.append(np.min(adl_aufnahme[a][:,1]))  #min den kleinsten Wert aus einer .txt-Datei von der ganzen X-Achse anhängen
-    max.append(np.max(adl_aufnahme[a][:,1]))
-print(max)
-print(min)
+def daten_umwandeln():
+    test=[],[]
+    train=[],[]
+    test = daten_matrix[0][:600],daten_matrix[1][:600] #Hier erfolgt der Split in Train und Test Data
+    train = daten_matrix[0][600:],daten_matrix[1][600:] 
     
-max=np.array(max)  #Min und max zu Np.arrays umwandeln- Kann man sich das sparen?
-min=np.array(min)       
-differenz=max-min #Differenz bilden (5+differenz=10 -> differenz=10-5)
-predictions=model.predict([differenz[:]])
-print("Vorhersage",np.argmax(predictions[0]))
+    print("Aufteilen Erfolgreich! Anzahl der Trainingsdaten:{0} und der Testdaten:{1} ".format(len(train[0]),len(test[0]))) 
+    """
+    Dieser Teil ist etwas umständlich. Hier werden die Werte aus dem Dataframe wieder raushgeholt und in einem 
+    Array gespeichert
+    """
+    train_data=[]
+    labels=[]
+    test_data=[]
+    test_labels=[]
+
+    for i in range(len(train[0])): #für alle Datenpunkte im Datenframe
+        train_data.append(train[0][i].values) #Wird der Wert in das Array geschrieben
+
+
+    for i in range(len(train[1])): # und genau das gleiche für die Labels
+        labels.append(train[1][i])
+    labels=np.array(labels)
+    for i in range(len(test[0])): # und für die Testdaten
+        test_data.append(test[0][i].values) 
+    for i in range(len(test[1])): # und genau das gleiche für die Labels
+        test_labels.append(test[1][i])
+    test_labels=np.array(test_labels)
+    return train_data,labels,test_data, test_labels
+
+def train_model(train_data,labels,test_data, test_labels):
+    """
+    Hier wird ein Keras Model definiert. Die Hyperparameter habe ich durch ein selbstgeschriebenes Programm, welches
+    diese zufällig füllt und dann die Acc prüft, gefunden.
+    """
+    model = keras.Sequential([     
+    keras.layers.Flatten(), 
+    keras.layers.Masking(mask_value=0.0),
+    
+    keras.layers.Dense(109, activation=tf.nn.softsign), 
+    keras.layers.Dense(50, activation=tf.nn.softmax), #2softsign 3softmax 0.90833336 2 109 50 0.002 0.001 90 1-> adams
+     
+ 
+    
+    ]) 
+    optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.003)
+    model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    
+    #Hier werden alle Daten auf eine Länge gebracht. Ansonsten kann das Model diese nicht verarbeiten
+    train_data=keras.preprocessing.sequence.pad_sequences(train_data, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.0)
+    train_data=np.array(train_data)
+    test_data=keras.preprocessing.sequence.pad_sequences(test_data, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
+    test_data=np.array(test_data)
+    
+    
+    history=model.fit(train_data,labels,validation_split=0.15,batch_size=100, epochs=30 ) 
+    model.summary()  
+    print(test_labels.shape,labels.shape)
+    print(test_data.shape,train_data.shape)
+    #Model mit den Test-Daten testen
+    test_loss, test_acc = model.evaluate(test_data, test_labels) 
+    print('Test accuracy:', test_acc) 
+    print('Test loss:', test_loss)
+    
+    visualization(history)
+    pfad="C:\\Users\\mario\\Desktop\\Filezilla"
+    while True:
+        test=[]
+        data=[]
+        test2=[]
+        if os.path.exists(pfad+"\\test.csv"):
+            try:
+                data=pd.read_csv(pfad+"\\test.csv",usecols=["acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
+            except:
+                continue
+            #os.remove(pfad+"\\data.csv")
+            if len(data)!=0:
+                test.append(data.values)
+                test=keras.preprocessing.sequence.pad_sequences(test, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
+                test=np.array(test)
+                print(test.shape)
+                predictions=model.predict(test)
+                print("Vorhersage",np.argmax(predictions))
+                if np.argmax(predictions)==1:
+                    for i in range (100):
+                        print("STURZ")
+        if os.path.exists(pfad+"\\test2.csv"):
+            try:    
+                data2=pd.read_csv(pfad+"\\test2.csv")
+            except:
+                continue
+            #os.remove(pfad+"\\data.csv")
+            if len(data2)!=0:
+                test2.append(data.values)
+                test2=keras.preprocessing.sequence.pad_sequences(test2, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
+                test2=np.array(test2)
+                print(test2.shape)
+                predictions=model.predict(test2)
+                print("Vorhersage",np.argmax(predictions))     
+                if np.argmax(predictions)==1:
+                    for i in range (100):
+                        print("STURZ")
+    #from keras.utils import plot_model
+    #plot_model(model, to_file='model.png')
+    """
+    Hier kann man eigene Daten einfügen um eine Vorhersage zu treffen.
+    aufnahme_adl=[]
+    
+    aufnahme_adl.append(np.loadtxt("#Pfad (als .txt)",dtype=float ,delimiter=",",skiprows=1))
+    aufnahme_adl=keras.preprocessing.sequence.pad_sequences(aufnahme_adl, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
+    aufnahme_adl=np.array(aufnahme_adl)
+    print(aufnahme_adl.shape)
+    predictions=model.predict(aufnahme_adl)
+    print("Vorhersage",np.argmax(predictions))
+    """
+    model.save('simple_mlp.pb') 
+def visualization(history):
+    import matplotlib.pyplot as plt
+    # Plot training & validation accuracy values
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+    
+    # Plot training & validation loss values
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+    
+# Alle Funktionen werden ausgeführt
+FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=einlesen()
+   
+FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
+
+daten_vektor=erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
+
+daten_matrix=erstelle_daten_matrix(daten_vektor)
+train_data, labels,test_data, test_labels=daten_umwandeln()
+train_model(train_data,labels, test_data, test_labels)
+
 ```
 
 | [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the second model](https://matheli.github.io/BWKI/posts/Second_model.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
