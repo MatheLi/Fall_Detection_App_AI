@@ -1,11 +1,6 @@
 # Second model
 
 ```
- # -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 18 07:13:56 2019
-@author: mario
-"""
 import tensorflow as tf
 from tensorflow import keras
 import os
