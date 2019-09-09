@@ -10,4 +10,4 @@ If the system receives no "answer" by the mobile carrier, it is very likely that
 *Source: https://miro.medium.com/proxy/1*nqSgu7Hg-35NS4AIXz63AQ.jpeg
 
 
-| [More poject details](./posts/More details.md) | [Code of the first model](./posts/First_model.md) | [Code of the second model](./posts/Second_model.md) | [The app](./posts/The_app_code.md) | [The team](./posts/The_team/The_team.md) |
+| [More poject details](./posts/More details.md) | [Code of the first model](./posts/First_model.md) | [Code of the second model](./posts/Second_model.md) | [The app](./posts/The_app_code.md) | [Accuracy](posts/First_model.md) | [The team](./posts/The_team/The_team.md) |
