@@ -11,4 +11,4 @@ If the system receives no "answer" by the mobile carrier, it is very likely that
 *Source: xavi.ivars.me/wp-content/uploads/2016/08/machine_learning-1024x724.jpg
 
 
-| [More poject details](./posts/More details.md) | [Code of the first model](./posts/First_model.md) | [Code of the second model](./posts/Second_model.md) | [The team](./posts/The_team/The_team.md) |
+| [More poject details](./posts/More details.md) | [Code of the first model](./posts/First_model.md) | [Code of the second model](./posts/Second_model.md) | [The app](./posts/The_app_code.md) | [The team](./posts/The_team/The_team.md) |
