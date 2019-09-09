@@ -297,4 +297,4 @@ About
 
 ```
 
-| [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first Model](https://matheli.github.io/BWKI/posts/First_model.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
+| [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first Model](https://matheli.github.io/BWKI/posts/First_model.html) | [The app](https://matheli.github.io/BWKI/posts/The_app_code.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
