@@ -1,29 +1,6 @@
 # Second model
 
 ```
-
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@MatheLi 
-Learn Git and GitHub without any code!
-Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
-
- 
-1
-1 1 MareSeestern/BWKI-Fall-Detection Private
- Code  Issues 0  Pull requests 0  Projects 0  Security  Insights
-BWKI-Fall-Detection/aktuelles_Model_mit_pandas_und_allen_Dateien_18082019.py
- Mare Update Gespräch
-542456d 2 days ago
-288 lines (252 sloc)  14 KB
-    
  # -*- coding: utf-8 -*-
 """
 Created on Sat Jul 18 07:13:56 2019
