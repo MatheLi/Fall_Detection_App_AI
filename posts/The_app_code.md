@@ -175,7 +175,7 @@ class Timer extends Thread {
                     zahler = zahler+1;
                     check=check+1;
                     MainActivity.check=check;
-                    Log.i("check",String.valueOf(check));
+                   
 
                 }
                 try {
@@ -190,9 +190,9 @@ class Timer extends Thread {
                 float[] orientation_data = MainActivity.orientation_data;
 
                 if (accelerometer_data != null && orientation_data != null && gyroscope_data != null) {
-                  //  Log.d(TAG, "Accelometer X:  " + accelerometer_data[0] + "    Y: " + accelerometer_data[1] + "   Z:   " + accelerometer_data[2]);
-                    //Log.d(TAG, "Orientation  Azimuth :  " + orientation_data[0] + "    Pitch: " + orientation_data[1] + "   Roll:   " + orientation_data[2]);
-                    //Log.d(TAG, "Gyroscope X:  " + gyroscope_data[0] + "    Y: " + gyroscope_data[1] + "   Z:   " + gyroscope_data[2]);
+                    Log.d(TAG, "Accelometer X:  " + accelerometer_data[0] + "    Y: " + accelerometer_data[1] + "   Z:   " + accelerometer_data[2]);
+                    Log.d(TAG, "Orientation  Azimuth :  " + orientation_data[0] + "    Pitch: " + orientation_data[1] + "   Roll:   " + orientation_data[2]);
+                    Log.d(TAG, "Gyroscope X:  " + gyroscope_data[0] + "    Y: " + gyroscope_data[1] + "   Z:   " + gyroscope_data[2]);
                     final long unixTime = System.currentTimeMillis() / 1000L;
 
                     String entry = unixTime + "," + timer_2 + "," + accelerometer_data[0] + "," + accelerometer_data[1] + "," + accelerometer_data[2] + "," + gyroscope_data[0] + "," + gyroscope_data[1] + "," + gyroscope_data[2] + "," + orientation_data[0] + "," + orientation_data[1] + "," + orientation_data[2] + "\n";
@@ -202,7 +202,7 @@ class Timer extends Thread {
                         try {
                             FileOutputStream f = new FileOutputStream(file, true);
                             try {
-                               // Log.e("SCHREIBT", String.valueOf(timer_2));
+                              
                                 f.write(entry.getBytes());
                                 f.flush();
                                 f.close();
@@ -221,7 +221,7 @@ class Timer extends Thread {
 
                             FileOutputStream f2 = new FileOutputStream(file2, true);
                             try {
-                    //            Log.e("SCHREIBT2", String.valueOf(timer_2));
+                  
                                 f2.write(entry.getBytes());
                                 f2.flush();
                                 f2.close();
@@ -243,7 +243,6 @@ class Timer extends Thread {
 
 
                         public void run() {
-                            Log.e("senden","senden");
                             int test=1;
                             while (true) {
                                 double zahler=MainActivity.zahler;
