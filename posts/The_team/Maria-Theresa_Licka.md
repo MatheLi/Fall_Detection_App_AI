@@ -2,7 +2,7 @@
 
 
 
-![](https://www.directupload.net/file/d/5572/nsiqp6ld_jpg.htm)
+![](https://s17.directupload.net/images/190911/nsiqp6ld.jpg)
 
 
 
