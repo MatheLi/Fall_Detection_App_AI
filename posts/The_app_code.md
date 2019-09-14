@@ -1,13 +1,13 @@
 # The app
-The app has diffrent tasks. It records the gyroscope, accelerometer and orientation data. In addition it writes a CSV-file and sends it to a FTP-Server.
+The app has diffrent tasks. It records the gyroscope, accelerometer and orientation data. In addition it writes a CSV-file and sends it to a FTP-Server. This survey is greatly reduced for better clarity. The full code has about 450 lines.
 
 ## Create Files
-In this part, we create two files. Furthermore we name the diffrent columms columns.
+In this part, we create a CSV-file. Furthermore we name the diffrent columms columns.
 ```
         File sdCard = Environment.getExternalStorageDirectory();
         File dir = new File(sdCard.getAbsolutePath() + "/sean");
         file = new File(dir, "output"+unixTimename+".csv");
-        file2 = new File(dir, "output2"+unixTimename+".csv");
+   
         String entry = "timestamp,rel_time,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,azimuth,pitch,roll\n";
         try {
             FileOutputStream f = new FileOutputStream(file, true);
@@ -21,18 +21,7 @@ In this part, we create two files. Furthermore we name the diffrent columms colu
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        try {
-            FileOutputStream f2 = new FileOutputStream(file2, true);
-            try {
-                f2.write(entry.getBytes());
-                f2.flush();
-                f2.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        
 ```
 ## Sensors
 Here we get the sensor data and save it in an array.
@@ -74,42 +63,11 @@ public void start(View v) throws InterruptedException {
     thread1.start();
 }
 ```  
-    
+## Creating CSV-file    
+In this part, we create a input String including Timestamp, time since start of the recording and of course the data of the sensors. 
+Directly after creating the String, we write it in the CSV-file.
 ```
-class Timer extends Thread {
-    MainActivity mainActivity;
-
-    public Timer(MainActivity main) {
-        mainActivity = main;
-    }
-    @Override
-    public void run() {
-        int datei=MainActivity.datei;
-        float timer_1 = MainActivity.timer_1;
-        double timer_2 = MainActivity.timer_2;
-        int off = MainActivity.off;
-        double zahler=MainActivity.zahler;
-        String csv_Datei= MainActivity.csv_Datei;
-        int check=MainActivity.check;
-        File file = MainActivity.file;
-        File file2 = MainActivity.file2;
-        double a = Math.pow(10, 3); // Angabe Nachkommastellen
-        double d = Math.pow(10, 4); // Angabe Nachkommastellen
         while (true) {
-            off = MainActivity.off;
-            MainActivity.timer_2=timer_2;
-            MainActivity.zahler=zahler;
-            MainActivity.datei=datei;
-            MainActivity.check=check;
-            if (off == 0) {
-                timer_2 = round(timer_1 * d) / d;
-                if (round(timer_2 * a) / a==zahler) {
-                    zahler = zahler+1;
-                    check=check+1;
-                    MainActivity.check=check;
-                   
-
-                }
                 try {
                     sleep(5);
                 } catch (InterruptedException e) {
@@ -128,213 +86,101 @@ class Timer extends Thread {
                     final long unixTime = System.currentTimeMillis() / 1000L;
 
                     String entry = unixTime + "," + timer_2 + "," + accelerometer_data[0] + "," + accelerometer_data[1] + "," + accelerometer_data[2] + "," + gyroscope_data[0] + "," + gyroscope_data[1] + "," + gyroscope_data[2] + "," + orientation_data[0] + "," + orientation_data[1] + "," + orientation_data[2] + "\n";
+                    
+                    
+              
+try {
+    FileOutputStream f = new FileOutputStream(file, true);
+    try {
 
-                    if (zahler%2==0) {
+        f.write(entry.getBytes());
+        f.flush();
+        f.close();
 
-                        try {
-                            FileOutputStream f = new FileOutputStream(file, true);
-                            try {
-                              
-                                f.write(entry.getBytes());
-                                f.flush();
-                                f.close();
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (zahler%2==1) {
-                        try {
-
-                            FileOutputStream f2 = new FileOutputStream(file2, true);
-                            try {
-                  
-                                f2.write(entry.getBytes());
-                                f2.flush();
-                                f2.close();
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 
 
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
+                       
+```
+## Sending the CSV-file to a FTP-server
+We reimport the written CSV-file from the storage again and save it as string. We send write the string to the server and clear the old CSV-file.
 
-                    }
-                    if (timer_2==1){
-                    new Thread(new Runnable(){
-                        MainActivity mainActivity;
-
-
-
-                        public void run() {
-                            int test=1;
-                            while (true) {
-                                double zahler=MainActivity.zahler;
-                                int check= MainActivity.check;
-                                String csv_Datei = MainActivity.csv_Datei;
-
-                                long unixTimename=mainActivity.unixTimename;
-                        
-                                if (check%2==1 && test==0) {
-                                    test=1;
-                                    MainActivity.zahler=zahler;
-                                    String ftpUrl = "ftp://%s:%s@%s/%s";
-                                    String host = "192.168.0.183";
-                                    String user = "NUTZERNAME";
-                                    String pass = "PASS";
-
-                                    String uploadPath = "test.csv";
-                                    ftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);
-                                    System.out.println("Upload URL: " + ftpUrl);
-
-                                    FileReader fr = null;
-                                    try {
-                                        fr = new FileReader("/storage/emulated/0/sean/output"+unixTimename+".csv");
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                    BufferedReader br = new BufferedReader(fr);
-                                    String zeile = "";
-
-                                    do {
-                                        try {
-                                            zeile = br.readLine();
-                                            if (zeile == null) {
-                                                break;
-                                            }
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        csv_Datei = csv_Datei + zeile + "\n";
-
-                                    }
-                                    while (zeile != null);
-                                    try {
-                                        br.close();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    try {
-                                        URL url = new URL(ftpUrl);
-                                        URLConnection conn = url.openConnection();
-                                        conn.setDoOutput(true);
-                                        OutputStream out = new BufferedOutputStream(conn.getOutputStream());
-                                        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-               8")));
-
-                                        writer.write(csv_Datei);
-                                        writer.flush();
-                                        writer.close();
-                                        out.close();
-
-                                        System.out.println("File uploaded");
-                                        csv_Datei = "timestamp,rel_time,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,azimuth,pitch,roll\n";
-                                    } catch (IOException ex) {
-
-                                        ex.printStackTrace();
-                                    }
-                                    try {
-
-                                        FileOutputStream f2 = new FileOutputStream("/storage/emulated/0/sean/output" + unixTimename +".csv", false);
-                                        try {
-
-                                            f2.write(csv_Datei.getBytes());
-                                            f2.flush();
-                                            f2.close();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                if (check%2==0 && test == 1) {
-                                    test=0;
-                                 
-                                    String ftpUrl = "ftp://%s:%s@%s/%s";
-                                    String host = "192.168.0.183";
-                                    String user = "NUTZERNAME";
-                                    String pass = "PASS";
-                                    String uploadPath = "test2.csv";
-                                    ftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);
-                                    System.out.println("Upload URL: " + ftpUrl);
-                                    FileReader fr = null;
-                                    try {
-                                        fr = new FileReader("/storage/emulated/0/sean/output2" + unixTimename +".csv");
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-                                    BufferedReader br = new BufferedReader(fr);
-                                    String zeile = "";
-
-                                    do {
-                                        try {
-                                            zeile = br.readLine();
-                                            if (zeile == null) {
-                                                break;
-                                            }
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        csv_Datei = csv_Datei + zeile + "\n";
-                                    }
-                                    while (zeile != null);
-                                    try {
-                                        br.close();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                    try {
-                                        URL url = new URL(ftpUrl);
-                                        URLConnection conn = url.openConnection();
-                                        conn.setDoOutput(true);
                                
-                                        OutputStream out = new BufferedOutputStream(conn.getOutputStream());
-                                        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-8")));
-                                        writer.write(csv_Datei);
-                                        writer.flush();
-                                        writer.close();
-                                        out.close();
-                                        System.out.println("File uploaded");
-                                        csv_Datei = "timestamp,rel_time,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,azimuth,pitch,roll\n";
-                                    } catch (IOException ex) {
+```
+MainActivity.zahler=zahler;
+String ftpUrl = "ftp://%s:%s@%s/%s";
+String host = "IP of the server";
+String user = "Username";
+String pass = "PASS";
 
-                                        ex.printStackTrace();
-                                    }
-                                    try {
-                                        FileOutputStream f2 = new FileOutputStream("/storage/emulated/0/sean/output2" + unixTimename +".csv", false);
-                                        try {
+String uploadPath = "test.csv";
+ftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);
+System.out.println("Upload URL: " + ftpUrl);
 
-                                            f2.write(csv_Datei.getBytes());
-                                            f2.flush();
-                                            f2.close();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                        }
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    }}}}
-                    }
-                                    ).start();
+FileReader fr = null;
+try {
+fr = new FileReader("/storage/emulated/0/sean/output"+unixTimename+".csv");
+} catch (FileNotFoundException e) {
+e.printStackTrace();
+}
+BufferedReader br = new BufferedReader(fr);
+String zeile = "";
 
-                    }}
+do {
+try {
+    zeile = br.readLine();
+    if (zeile == null) {
+        break;
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
 
-                    }
+csv_Datei = csv_Datei + zeile + "\n";
 
-            }
-        }}
+}
+while (zeile != null);
+try {
+br.close();
+} catch (IOException e) {
+e.printStackTrace();
+}
 
+try {
+URL url = new URL(ftpUrl);
+URLConnection conn = url.openConnection();
+conn.setDoOutput(true);
+OutputStream out = new BufferedOutputStream(conn.getOutputStream());
+BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-               8")));
 
+writer.write(csv_Datei);
+writer.flush();
+writer.close();
+out.close();
+
+System.out.println("File uploaded");
+csv_Datei = "timestamp,rel_time,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,azimuth,pitch,roll\n";
+} catch (IOException ex) {
+
+ex.printStackTrace();
+}
+try {
+
+FileOutputStream f2 = new FileOutputStream("/storage/emulated/0/sean/output" + unixTimename +".csv", false);
+try {
+
+    f2.write(csv_Datei.getBytes());
+    f2.flush();
+    f2.close();
+} catch (IOException e) {
+    e.printStackTrace();
+}
+} catch (FileNotFoundException e) {
+e.printStackTrace();
+}
+}
 
 ```
 | [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the second model](https://matheli.github.io/BWKI/posts/Second_model.html) | [Accuracy](https://matheli.github.io/BWKI/posts/Accuracy.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
