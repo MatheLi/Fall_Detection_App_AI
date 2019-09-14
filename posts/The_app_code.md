@@ -1,8 +1,8 @@
 # The app
-The app has diffrent tasks. It records the gyroscope, accelerometer and orientation data. In addition it writes a CSV-file and sends it to a FTP-Server. This survey is greatly reduced for better clarity. The full code has about 450 lines.
+The app has different tasks. It records the gyroscope, accelerometer and orientation data. In addition, it writes a CSV-file and sends it to a FTP-Server. This survey is greatly reduced for better clarity. The full code has about 450 lines.
 
 ## Create Files
-In this part, we create a CSV-file. Furthermore we name the diffrent columms columns.
+In this part, we create a CSV-file. Furthermore, we name the different columns columns.
 ```
         File sdCard = Environment.getExternalStorageDirectory();
         File dir = new File(sdCard.getAbsolutePath() + "/sean");
@@ -41,7 +41,7 @@ Here we get the sensor data and save it in an array.
     }
 ```
 ## Buttons
-We have to create a function for each button, which register/unregister the sensors. As well we play a sound and start an extra thread.
+We have to create a function for each button, which registers/unregisters the sensors. As well we play a sound and start an extra thread.
 
 ```
 public void stop(View v){
@@ -64,7 +64,7 @@ public void start(View v) throws InterruptedException {
 }
 ```  
 ## Creating CSV-file    
-In this part, we create a input String including Timestamp, time since start of the recording and of course the data of the sensors. 
+In this part, we create an input String including Timestamp, time since the start of the recording and of course the data of the sensors. 
 Directly after creating the String, we write it in the CSV-file.
 ```
         while (true) {
@@ -105,7 +105,7 @@ try {
                        
 ```
 ## Sending the CSV-file to a FTP-server
-We reimport the written CSV-file from the storage again and save it as string. We send write the string to the server and clear the old CSV-file.
+We reimport the written CSV-file from the storage again and save it as a string. We send write the string to the server and clear the old CSV-file.
 
                                
 ```
