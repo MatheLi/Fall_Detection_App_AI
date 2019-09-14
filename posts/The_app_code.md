@@ -1,85 +1,9 @@
 # The app
+The app has diffrent tasks. It records the gyroscope, accelerometer and orientation data. In addition it writes a CSV-file and sends it to a FTP-Server.
 
+## Create Files
+In this part, we create two files. Furthermore we name the diffrent columms columns.
 ```
-package com.example.bwki_test_accelometer;
-
-import android.Manifest;
-
-import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.MediaPlayer;
-import android.os.Environment;
-import android.os.StrictMode;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-
-import android.widget.TextView;
-
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.StandardOpenOption;
-import java.util.concurrent.TimeUnit;
-
-
-import static android.content.ContentValues.TAG;
-import static java.lang.Math.round;
-
-
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
-    public static int off=1;
-    public static int datei=1;
-    public static int check=1;
-    static float timer_1;
-    static double timer_2;
-    static double zahler=1;
-    static String csv_Datei="";
-    static long unixTimename = System.currentTimeMillis() / 1000L;
-    public android.hardware.SensorManager sensorManager;
-    public Sensor accelerometer;
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE};
-    Sensor orientation;
-    Sensor gyroscope;
-    static float[] accelerometer_data;
-    static float[] orientation_data;
-    static float[] gyroscope_data;
-    static File file;
-    static File file2;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        setContentView(R.layout.activity_main);
-        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
         File sdCard = Environment.getExternalStorageDirectory();
         File dir = new File(sdCard.getAbsolutePath() + "/sean");
         file = new File(dir, "output"+unixTimename+".csv");
@@ -109,41 +33,49 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+```
+## Sensors
+Here we get the sensor data and save it in an array.
+```
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         gyroscope=sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
         orientation = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        
+        public void onSensorChanged(SensorEvent event) {
+            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+                accelerometer_data = event.values;
+            if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
+                orientation_data = event.values;
+            if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE)
+                gyroscope_data = event.values;
     }
-        public void stop(View v){
-        off=1;
-        sensorManager.unregisterListener(MainActivity.this, accelerometer);
-        sensorManager.unregisterListener(MainActivity.this, orientation);
-        sensorManager.unregisterListener(MainActivity.this, gyroscope);
-    }
-    public void start(View v) throws InterruptedException {
-        off=0;
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.startton);
-        mp.start();
-        TimeUnit.SECONDS.sleep(5);
-        mp.start();
-        sensorManager.registerListener(MainActivity.this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
-        sensorManager.registerListener(MainActivity.this, orientation, SensorManager.SENSOR_DELAY_FASTEST);
-        sensorManager.registerListener(MainActivity.this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
-        Timer thread1 = new Timer(this);
-        thread1.start();
-    }
-    public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
-            accelerometer_data = event.values;
-        if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
-            orientation_data = event.values;
-        if (event.sensor.getType() == Sensor.TYPE_GYROSCOPE)
-            gyroscope_data = event.values;
-    }
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+```
+## Buttons
+We have to create a function for each button, which register/unregister the sensors. As well we play a sound and start an extra thread.
 
-    }
+```
+public void stop(View v){
+    off=1;
+    sensorManager.unregisterListener(MainActivity.this, accelerometer);
+    sensorManager.unregisterListener(MainActivity.this, orientation);
+    sensorManager.unregisterListener(MainActivity.this, gyroscope);
 }
+public void start(View v) throws InterruptedException {
+    off=0;
+    final MediaPlayer mp = MediaPlayer.create(this, R.raw.startton);
+    mp.start();
+    TimeUnit.SECONDS.sleep(5);
+    mp.start();
+    sensorManager.registerListener(MainActivity.this, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+    sensorManager.registerListener(MainActivity.this, orientation, SensorManager.SENSOR_DELAY_FASTEST);
+    sensorManager.registerListener(MainActivity.this, gyroscope, SensorManager.SENSOR_DELAY_FASTEST);
+    Timer thread1 = new Timer(this);
+    thread1.start();
+}
+```  
+    
+```
 class Timer extends Thread {
     MainActivity mainActivity;
 
