@@ -35,8 +35,14 @@ In addition we wrote an extra script, which cuts all CSV-files, which were longe
 
 ## Ciation to use the dataset: 
 [Website](https://bmi.teicrete.gr/en/home/)
+
 [Dataset Download](https://drive.google.com/file/d/0B5VcW5yHhWhieWc5WHlIN0twcUE/edit)
+
 G. Vavoulas, M. Pediaditis, E. Spanakis, M. Tsiknakis, The MobiFall Dataset:
+
 An Initial Evaluation of Fall Detection Algorithms Using Smartphones, 
+
 6th IEEE International Symposium on Monitoring & Surveillance Research (ISMSR): 
+
 Healthcare-Bioinformatics, Chania, Greece, 2013, DOI:10.1109/BIBE.2013.6701629.
+
