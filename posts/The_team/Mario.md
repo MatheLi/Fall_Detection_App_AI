@@ -1,7 +1,7 @@
 # Mario Schweikert
 Hey! My name is Mario and I am 16 years old. I am in year 11 at a German academic high
 school. When I was 6 years old, I got my first computer. 6 years later I started
-programming and took part in some competitions. Currently my favorite programminglanguage
+programming and took part in some competitions. Currently my favorite programming language
 is Python but I also program in Java. After accomplishing my A-levels, I want to
 study computer science. The competition „Bundeswettbewerb Künstliche Intelligenz“
 aroused my interest in AI.
