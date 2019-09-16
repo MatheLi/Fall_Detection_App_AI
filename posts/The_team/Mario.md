@@ -9,7 +9,7 @@ aroused my interest in AI.
 For a change I also do sports, e.g. tennis or cycling. In addition, I dance Standard/Latin at
 a dancing school.
 
-![](https://raw.githubusercontent.com/MatheLi/BWKI/master/posts/The_team/Foto_Roboter_Kluth.jpg)
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Foto_Roboter_Kluth.jpg)
 
 *Robot of me, Image source: https://www.flickr.com/photos/adolf_kluth/39918346113/in/album-72157706089999965/*
 
