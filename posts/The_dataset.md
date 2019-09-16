@@ -18,19 +18,19 @@ Here are some example values of a fall file. The column "label" was added by our
 This picture describe the data of a fall. 
 
 ## Data preprocessing
-'''
+```
 
 for a in range(1,4): # 3 tries for everyone
 for i in range(1,67): # 66 subjects
 if os.path.exists(path+"_{0}_{1}_annotated.csv".format(i,a)): #check if path exist
 data=pd.read_csv(path+"_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
  
-'''
+```
 This code excerpt shows the read in of the 3300 files in a Pandas dataframe. In the further course we added a label to the dataframe and changed it in a Numpy Array.
 To ensure that every file has the same length, we used this command:
-'''
+```
 keras.preprocessing.sequence.pad_sequences(data, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0) 
-'''
+```
 In addition we wrote an extra script, which cuts all CSV-files, which were longer then 10 seconds.
 
 ##Ciation to use the dataset: 
