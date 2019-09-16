@@ -33,7 +33,7 @@ keras.preprocessing.sequence.pad_sequences(data, maxlen=train_data.shape[1], dty
 ```
 In addition we wrote an extra script, which cuts all CSV-files, which were longer then 10 seconds.
 
-##Ciation to use the dataset: 
+## Ciation to use the dataset: 
 [Website](https://bmi.teicrete.gr/en/home/)
 [Dataset Download](https://drive.google.com/file/d/0B5VcW5yHhWhieWc5WHlIN0twcUE/edit)
 G. Vavoulas, M. Pediaditis, E. Spanakis, M. Tsiknakis, The MobiFall Dataset:
