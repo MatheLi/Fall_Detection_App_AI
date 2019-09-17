@@ -109,17 +109,20 @@ We reimport the written CSV-file from the storage again and save it as a string.
 
                                
 ```
-MainActivity.zahler=zahler;
+StringBuilder sb = new StringBuilder();
+
 String ftpUrl = "ftp://%s:%s@%s/%s";
-String host = "IP of the server";
-String user = "Username";
-String pass = "PASS";
+String host = "IP-ADRESS";
+String user = "USERNAME";
+String pass = "PASSWORD";
 
 String uploadPath = "test.csv";
+
 ftpUrl = String.format(ftpUrl, user, pass, host, uploadPath);
 System.out.println("Upload URL: " + ftpUrl);
 
 FileReader fr = null;
+
 try {
 fr = new FileReader("/storage/emulated/0/sean/output"+unixTimename+".csv");
 } catch (FileNotFoundException e) {
@@ -138,48 +141,54 @@ try {
     e.printStackTrace();
 }
 
-csv_Datei = csv_Datei + zeile + "\n";
+sb.append( zeile + "\n");
+
+
 
 }
 while (zeile != null);
+
+
 try {
+
 br.close();
 } catch (IOException e) {
 e.printStackTrace();
 }
 
+
 try {
-URL url = new URL(ftpUrl);
-URLConnection conn = url.openConnection();
-conn.setDoOutput(true);
-OutputStream out = new BufferedOutputStream(conn.getOutputStream());
-BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-               8")));
+    URL url = new URL(ftpUrl);
+    URLConnection conn = url.openConnection();
+    conn.setDoOutput(true);
+    //Output muss in append mode
+    OutputStream out = new BufferedOutputStream(conn.getOutputStream());
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, Charset.forName("UTF-8")));
 
-writer.write(csv_Datei);
-writer.flush();
-writer.close();
-out.close();
+    writer.write(String.valueOf(sb));
+    writer.flush();
+    writer.close();
+    out.close();
 
-System.out.println("File uploaded");
-csv_Datei = "timestamp,rel_time,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,azimuth,pitch,roll\n";
+    System.out.println("File uploaded");
+    sb.setLength(0);
 } catch (IOException ex) {
 
-ex.printStackTrace();
+    ex.printStackTrace();
 }
 try {
 
-FileOutputStream f2 = new FileOutputStream("/storage/emulated/0/sean/output" + unixTimename +".csv", false);
-try {
+    FileOutputStream f2 = new FileOutputStream("/storage/emulated/0/sean/output" + unixTimename + ".csv", false);
+    try {
 
-    f2.write(csv_Datei.getBytes());
-    f2.flush();
-    f2.close();
-} catch (IOException e) {
-    e.printStackTrace();
-}
+        f2.write(("timestamp,rel_time,acc_x,acc_y,acc_z,gyro_x,gyro_y,gyro_z,azimuth,pitch,roll\n").getBytes());
+        f2.flush();
+        f2.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 } catch (FileNotFoundException e) {
-e.printStackTrace();
-}
+    e.printStackTrace();
 }
 
 ```
