@@ -1,5 +1,5 @@
 # The app
-The app has different tasks. It records the gyroscope, accelerometer and orientation data. In addition, it writes a CSV-file and sends it to a FTP-Server. This overview is greatly reduced for better clarity. The full code has about 450 lines. You can download it  [here](https://github.com/MatheLi/BWKI/blob/master/res/app-release.apk).
+The app has different tasks. It records the gyroscope, accelerometer and orientation data. In addition, it writes a CSV-file and sends it to a FTP-Server. This overview is greatly reduced for better clarity. The full code has about 450 lines. You can download it  [here](https://github.com/MareSeestern/BWKI-Fall-Detection/blob/master/App/Kommunikation_mit_Server/app-release.apk).
 
 ## Pictures
 ![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Screenshot_app%20.png?raw=true)
