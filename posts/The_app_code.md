@@ -1,5 +1,10 @@
 # The app
-The app has different tasks. It records the gyroscope, accelerometer and orientation data. In addition, it writes a CSV-file and sends it to a FTP-Server. This overview is greatly reduced for better clarity. The full code has about 450 lines.
+The app has different tasks. It records the gyroscope, accelerometer and orientation data. In addition, it writes a CSV-file and sends it to a FTP-Server. This overview is greatly reduced for better clarity. The full code has about 450 lines. You can download it  [here](https://github.com/MatheLi/BWKI/blob/master/res/app-release.apk).
+
+## Pictures
+![](https://github.com/MatheLi/BWKI/blob/master/res/Screenshot_app%20(3).png?raw=true)
+![](https://github.com/MatheLi/BWKI/blob/master/res/Screenshot_app%20(2).png?raw=true)
+![](https://github.com/MatheLi/BWKI/blob/master/res/Screenshot_app%20(4).png?raw=true)
 
 ## Create Files
 In this part, we create a CSV-file. Furthermore, we name the different columns columns.
@@ -192,7 +197,7 @@ try {
 }
 
 ```
-# Performance
+## Performance
 It is important for our app to save battery because it runs all day long.
 
 ![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Leistung_app.png?raw=true)
@@ -204,7 +209,7 @@ You can see that the CPU usage is low. In addition the memory utilization raises
 You can also see this peak in the network graph. It is in 10 seconds interval.
 To put it in a nutshell our application doesn't waste system resources. 
 
-# Pictures
+
 
 | [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the second model](https://matheli.github.io/BWKI/posts/Second_model.html) | [Accuracy](https://matheli.github.io/BWKI/posts/Accuracy.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
 
