@@ -2,8 +2,7 @@
 The app has different tasks. It records the gyroscope, accelerometer and orientation data. In addition, it writes a CSV-file and sends it to a FTP-Server. This overview is greatly reduced for better clarity. The full code has about 450 lines. You can download it  [here](https://github.com/MatheLi/BWKI/blob/master/res/app-release.apk).
 
 ## Pictures
-![](https://github.com/MatheLi/BWKI/blob/master/res/Screenshot_app%20(2).png?raw=true)
-![](https://github.com/MatheLi/BWKI/blob/master/res/Screenshot_app%20(3).png?raw=true)
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Screenshot_app%20(2)%20-%20Kopie.png?raw=true)
 ![](https://github.com/MatheLi/BWKI/blob/master/res/Screenshot_app%20(4).png?raw=true)
 
 ## Create Files
