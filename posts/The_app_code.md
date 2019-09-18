@@ -192,5 +192,19 @@ try {
 }
 
 ```
+# Performance
+It is important for our app to save battery because it runs all day long.
+
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Leistung_app.png?raw=true)
+You can see that the CPU usage is low. In addition the memory utilization raises and falls because we read-in frequently the CSV-files.
+
+
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Abstand_sendungen.png?raw=true)
+
+You can also see this peak in the network graph. It is in 10 seconds interval.
+To put it in a nutshell our application doesn't waste system resources. 
+
+# Pictures
+
 | [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) | [Code of the first model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the second model](https://matheli.github.io/BWKI/posts/Second_model.html) | [Accuracy](https://matheli.github.io/BWKI/posts/Accuracy.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
 
