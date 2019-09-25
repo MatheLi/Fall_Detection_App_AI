@@ -9,7 +9,8 @@ import os
 import numpy as np
 import pandas as pd
 import random
-print("GPU Available: ", tf.test.is_gpu_available())
+
+print("GPU Available: ", tf.test.is_gpu_available()) #GPU rendering beschleunigt das Training 
 
 def einlesen(): 
     """
@@ -71,7 +72,7 @@ def einlesen():
     print("reading")
     STD=[pd.read_csv(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a))]
     WAL=[pd.read_csv(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a))]
-
+    
     return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
 
 
@@ -180,8 +181,8 @@ def erstelle_daten_matrix(daten_vektor):
 def daten_umwandeln():
     test=[],[]
     train=[],[]
-    test = daten_matrix[0][:600],daten_matrix[1][:600] #Hier erfolgt der Split in Train und Test Data
-    train = daten_matrix[0][600:],daten_matrix[1][600:] 
+    test = daten_matrix[0][:400],daten_matrix[1][:400] #Hier erfolgt der Split in Train und Test Data
+    train = daten_matrix[0][400:],daten_matrix[1][400:] 
     
     print("Aufteilen Erfolgreich! Anzahl der Trainingsdaten:{0} und der Testdaten:{1} ".format(len(train[0]),len(test[0]))) 
     """
@@ -209,30 +210,28 @@ def daten_umwandeln():
 
 def train_model(train_data,labels,test_data, test_labels):
     """
-    Hier wird ein Keras Model definiert. Die Hyperparameter habe ich durch ein selbstgeschriebenes Programm, welches
-    diese zufällig füllt und dann die Acc prüft, gefunden.
+    Hier wird ein Keras Model definiert. Die Hyperparameter habe wir durch ein selbstgeschriebenes Programm, welches
+    diese zufällig erstellt und dann die Acc prüft, gefunden.
     """
     model = keras.Sequential([     
     keras.layers.Flatten(), 
     keras.layers.Masking(mask_value=0.0),
-    
     keras.layers.Dense(109, activation=tf.nn.softsign), 
-    keras.layers.Dense(50, activation=tf.nn.softmax), #2softsign 3softmax 0.90833336 2 109 50 0.002 0.001 90 1-> adams
-     
- 
-    
+    keras.layers.Dense(50, activation=tf.nn.softmax),
     ]) 
     optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.003)
     model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+    
+    
     
     #Hier werden alle Daten auf eine Länge gebracht. Ansonsten kann das Model diese nicht verarbeiten
     train_data=keras.preprocessing.sequence.pad_sequences(train_data, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.0)
     train_data=np.array(train_data)
     test_data=keras.preprocessing.sequence.pad_sequences(test_data, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
-    test_data=np.array(test_data)
+    test_data=np.array(test_data) 
+    history=model.fit(train_data,labels,validation_split=0.15,batch_size=100, epochs=5500 ) 
     
     
-    history=model.fit(train_data,labels,validation_split=0.15,batch_size=100, epochs=30 ) 
     model.summary()  
     print(test_labels.shape,labels.shape)
     print(test_data.shape,train_data.shape)
@@ -240,62 +239,12 @@ def train_model(train_data,labels,test_data, test_labels):
     test_loss, test_acc = model.evaluate(test_data, test_labels) 
     print('Test accuracy:', test_acc) 
     print('Test loss:', test_loss)
-    
     visualization(history)
-    pfad="C:\\Users\\mario\\Desktop\\Filezilla"
-    while True:
-        test=[]
-        data=[]
-        test2=[]
-        if os.path.exists(pfad+"\\test.csv"):
-            try:
-                data=pd.read_csv(pfad+"\\test.csv",usecols=["acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
-            except:
-                continue
-            #os.remove(pfad+"\\data.csv")
-            if len(data)!=0:
-                test.append(data.values)
-                test=keras.preprocessing.sequence.pad_sequences(test, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
-                test=np.array(test)
-                print(test.shape)
-                predictions=model.predict(test)
-                print("Vorhersage",np.argmax(predictions))
-                if np.argmax(predictions)==1:
-                    for i in range (100):
-                        print("STURZ")
-        if os.path.exists(pfad+"\\test2.csv"):
-            try:    
-                data2=pd.read_csv(pfad+"\\test2.csv")
-            except:
-                continue
-            #os.remove(pfad+"\\data.csv")
-            if len(data2)!=0:
-                test2.append(data.values)
-                test2=keras.preprocessing.sequence.pad_sequences(test2, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
-                test2=np.array(test2)
-                print(test2.shape)
-                predictions=model.predict(test2)
-                print("Vorhersage",np.argmax(predictions))     
-                if np.argmax(predictions)==1:
-                    for i in range (100):
-                        print("STURZ")
-    #from keras.utils import plot_model
-    #plot_model(model, to_file='model.png')
-    """
-    Hier kann man eigene Daten einfügen um eine Vorhersage zu treffen.
-    aufnahme_adl=[]
+    model.save('simple_mlp5500.pb') 
     
-    aufnahme_adl.append(np.loadtxt("#Pfad (als .txt)",dtype=float ,delimiter=",",skiprows=1))
-    aufnahme_adl=keras.preprocessing.sequence.pad_sequences(aufnahme_adl, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
-    aufnahme_adl=np.array(aufnahme_adl)
-    print(aufnahme_adl.shape)
-    predictions=model.predict(aufnahme_adl)
-    print("Vorhersage",np.argmax(predictions))
-    """
-    model.save('simple_mlp.pb') 
 def visualization(history):
     import matplotlib.pyplot as plt
-    # Plot training & validation accuracy values
+    # Graphen plotten um das Model besser bewerten zu können
     plt.plot(history.history['acc'])
     plt.plot(history.history['val_acc'])
     plt.title('Model accuracy')
