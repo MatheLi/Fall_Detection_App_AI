@@ -10,4 +10,4 @@ If the system receives no "answer" by the mobile carrier, it is very likely that
 *Source: https://miro.medium.com/proxy/1*nqSgu7Hg-35NS4AIXz63AQ.jpeg
 
 
-| [More poject details](./posts/More details.md) |C:\Users\mario\Desktop\BWKI_Github\BWKI-Fall-Detection| [The app](./posts/The_app_code.md) | [The dataset](./posts/The_dataset.md) | [Accuracy](./posts/Accuracy.md) | [The team](./posts/The_team/The_team.md) |
+| [More poject details](./posts/More details.md) | [Code of the model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/BWKI/posts/Second_model.html) | [The app](./posts/The_app_code.md) | [The dataset](./posts/The_dataset.md) | [Accuracy](./posts/Accuracy.md) | [The team](./posts/The_team/The_team.md) |
