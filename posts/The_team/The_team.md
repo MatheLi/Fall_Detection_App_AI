@@ -4,7 +4,7 @@
 ### [Mario Schweikert](./Mario.md)
 
 # Picture of us
-![](https://github.com/MatheLi/BWKI/blob/master/res/gruppenfoto.jpeg)
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/gruppenfoto.jpeg)
 
 
 
