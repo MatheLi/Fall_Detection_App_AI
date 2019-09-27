@@ -7,7 +7,7 @@ If the system receives no "answer" by the mobile carrier, it is very likely that
 
 ![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/httpspixabay.comdevectorsa-ich-ai-anatomie-270919.png)
 
-*Source: https://pixabay.com/de/vectors/a-ich-ai-anatomie-2729794/
+*Source: https://pixabay.com/de/vectors/a-ich-ai-anatomie-2729794/ Date: 27.09.19
 
 
 | [More poject details](https://github.com/MatheLi/BWKI/blob/master/posts/More%20details.md) | [Code of the model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/BWKI/posts/Second_model.html) | [The app](./posts/The_app_code.md) | [The dataset](./posts/The_dataset.md) | [Accuracy](./posts/Accuracy.md) | [The team](./posts/The_team/The_team.md) |
