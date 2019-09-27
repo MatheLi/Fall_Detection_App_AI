@@ -3,7 +3,8 @@
 ### [Maria-Theresa Licka](./Maria-Theresa_Licka.md) 
 ### [Mario Schweikert](./Mario.md)
 
-
+# Picture of us
+![](https://github.com/MatheLi/BWKI/blob/master/res/gruppenfoto.jpeg)
 
 
 
