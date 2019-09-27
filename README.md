@@ -5,9 +5,9 @@ In case that a person has fallen but needs no help the person can also click on 
 If the system receives no "answer" by the mobile carrier, it is very likely that a fall has occurred and the person is in need of help due to injury and/or unconsciousness. In this case, after a certain time frame (30 seconds) the app sends an emergency call, by itself, to an emergency hotline with the actual coordinates and data of the phone.  
 
 
-![](https://miro.medium.com/proxy/1*nqSgu7Hg-35NS4AIXz63AQ.jpeg)
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/httpspixabay.comdevectorsa-ich-ai-anatomie-270919.png)
 
-*Source: https://miro.medium.com/proxy/1*nqSgu7Hg-35NS4AIXz63AQ.jpeg
+*Source: https://pixabay.com/de/vectors/a-ich-ai-anatomie-2729794/
 
 
 | [More poject details](https://github.com/MatheLi/BWKI/blob/master/posts/More%20details.md) | [Code of the model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/BWKI/posts/Second_model.html) | [The app](./posts/The_app_code.md) | [The dataset](./posts/The_dataset.md) | [Accuracy](./posts/Accuracy.md) | [The team](./posts/The_team/The_team.md) |
