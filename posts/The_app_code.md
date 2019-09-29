@@ -6,6 +6,7 @@ The app has different tasks. It records the gyroscope, accelerometer and orienta
 ![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Screenshot_icon.png?raw=true)
 
 ## Create Files
+The program was completely written by us.
 In this part, we create a CSV-file. Furthermore, we name the different columns columns.
 ```
         File sdCard = Environment.getExternalStorageDirectory();
