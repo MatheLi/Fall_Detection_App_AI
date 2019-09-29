@@ -1,26 +1,27 @@
 # Train the model
+
+## Importing libaries
 ```
-"""
-DATASET: G. Vavoulas, M. Pediaditis, C. Chatzaki, E. G. Spanakis, M. Tsiknakis, The MobiFall Dataset: Fall Detection and Classification with a Smartphone, invited publication for the International Journal of Monitoring and Surveillance Technologies Research, pp 44-56, 2014, DOI:10.4018/ijmstr.201401010
-"""
 import tensorflow as tf
 from tensorflow import keras
 import os
 import numpy as np
 import pandas as pd
 import random
+```
 
-print("GPU Available: ", tf.test.is_gpu_available()) #GPU rendering beschleunigt das Training 
+## Import dataset
+Here all .csv files are read into a Panda dataframe. There will be 3 attempts each of 67
+subjects read. It also checks if there is the path at all, because there are always missing files.
+    
+The function returns Panda's data frame - sorted by folder names.
+```
+"""
+DATASET: G. Vavoulas, M. Pediaditis, C. Chatzaki, E. G. Spanakis, M. Tsiknakis, The MobiFall Dataset: Fall Detection and Classification with a Smartphone, invited publication for the International Journal of Monitoring and Surveillance Technologies Research, pp 44-56, 2014, DOI:10.4018/ijmstr.201401010
+"""
 
 def einlesen(): 
-    """
-    Hier werden alle .csv Dateien in ein Panda-Dataframe eingelesen. Es werden jeweils 3 Versuche von 67 
-    Versuchspersonen eingelesen. Sortiert in den verschiedenen Ordnernamen. Außerdem wird geprüft ob,
-    es den Pfad überhaupt gibt, denn es fehlen immer wieder einzelne Dateien.
-    
-    Die Funktion gibt Pandas Datenframe nach den Ordnern sotiert zurück.
-    """
-   
+
     #FALLS
     FOL=[]
     FKL=[]
@@ -40,52 +41,32 @@ def einlesen():
     STD=[]
     WAL=[]
 
-    #Pfad zu MobiAct_Dataset_v2
-    pfad="C:\\Users\\mario\\Desktop\\BWKI_Github\\BWKI-Fall-Detection\\MobiAct_Dataset_v2"
+    #Path to MobiAct_Dataset_v2
+    pfad="\\MobiAct_Dataset_v2"
     #FALLS
-    print("reading")
+   
     #FOL    
     FOL=[pd.read_csv(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])
     for a in range(1,4)
         for i in range(1,68)
             if os.path.exists(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a))
             ]
-    print("reading")
-    FKL=[pd.read_csv(pfad+"\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\FKL\FKL_{0}_{1}_annotated.csv".format(i,a))]
-    print("reading")
-    BSC=[pd.read_csv(pfad+"\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\BSC\BSC_{0}_{1}_annotated.csv".format(i,a))]
-    print("reading")
-    SDL=[pd.read_csv(pfad+"\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\SDL\SDL_{0}_{1}_annotated.csv".format(i,a))]
-    print("reading")
-    #ADL
-    CHU=[pd.read_csv(pfad+"\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CHU\CHU_{0}_{1}_annotated.csv".format(i,a))]
-    SCH=[pd.read_csv(pfad+"\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\SCH\SCH_{0}_{1}_annotated.csv".format(i,a))]
-    STU=[pd.read_csv(pfad+"\Annotated Data\STU\STU_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\STU\STU_{0}_{1}_annotated.csv".format(i,a))]
-    print("reading")
-    STN=[pd.read_csv(pfad+"\Annotated Data\STN\STN_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\STN\STN_{0}_{1}_annotated.csv".format(i,a))]
-    CSI=[pd.read_csv(pfad+"\Annotated Data\CSI\CSI_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CSI\CSI_{0}_{1}_annotated.csv".format(i,a))]
-    CSO=[pd.read_csv(pfad+"\Annotated Data\CSO\CSO_{0}_{1}_annotated.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,5) for i in range(1,68) if os.path.exists(pfad+"\Annotated Data\CSO\CSO_{0}_{1}_annotated.csv".format(i,a))]
-    print("reading")
-    JOG=[pd.read_csv(pfad+"\\10s_bearbeitet\\JOG\\JOG_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(0,70) if os.path.exists(pfad+"\\10s_bearbeitet\\JOG\\JOG_{0}_{1}_10s.csv".format(i,a))]
-    JUM=[pd.read_csv(pfad+"\\10s_bearbeitet\\JUM\\JUM_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,4) for i in range(0,70) if os.path.exists(pfad+"\\10s_bearbeitet\\JUM\\JUM_{0}_{1}_10s.csv".format(i,a))]
-    SIT=[pd.read_csv(pfad+"\\10s_bearbeitet\\SIT\\SIT_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(1,7) for i in range(0,19) if os.path.exists(pfad+"\\10s_bearbeitet\\SIT\\SIT_{0}_{1}_10s.csv".format(i,a))]
-    print("reading")
-    STD=[pd.read_csv(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\STD\\STD_{0}_{1}_10s.csv".format(i,a))]
-    WAL=[pd.read_csv(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a),usecols=["rel_time","acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"])for a in range(0,10) for i in range(0,20) if os.path.exists(pfad+"\\10s_bearbeitet\\WAL\\WAL_{0}_{1}_10s.csv".format(i,a))]
-    
+            
+    [the same with all other files..]
     return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
+```
 
+## Adding labels to the file
+We add the column "Label" to each file. We still know at this point, whether
+if it is a fall or a ADL. first of all, we only want to predict whether has fallen and not the exact fall style.   
+That's why we have two labels:
 
+1 = fall 0 = ADL
+
+The function expects as parameters the Pandas dataframes. It returns the data (still as a dataframe), with the extra column     "Label" which is completely filled with "1" or "0".
+ ```
 def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
-    """
-    Hier wird jeder Datei eine weitere Spalte "Label" angehängt. Da wir an dieser Stelle noch wissen, ob 
-    es sich um ein Sturz oder ADL handelt können wir uns an den Ordnernamen orientieren. Da es uns ausreicht 
-    erstmal nur vorherszusagen ob jmd. gestürzt ist und nicht die genau Sturzart zu erkennen, vereinfachen wir
-    auf zwei Label: 1=Sturz 0=ADL
-    
-    Die Funktion erwartet als Parameter die Pandas Datenframes nach den Ordnern sortiert. Es gibt die Daten (immer noch als Datenframe)
-    zurück, mit der extra Spalte "Label" welche komplett mit "1" oder "0" gefüllt ist.
-    """
+
 # Falls (1)
     for i in range(len(FOL)):
         FOL[i]["Label"]=1
@@ -119,15 +100,14 @@ def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL):
     for i in range(len(WAL)):
         WAL[i]["Label"]=0
     return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
+```
+## Create a data vector
+Since we now also have the label in the data frames, we can detach ourselves from the folder structure and mix everything   together.
+Here all files from all folders are added to an array. 
 
+Expects as parameters the dataframes with the labels and returns a data_vector.
+```
 def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
-    """
-    Da wir nun in den Datenframes auch das Label enthalten haben, können wir uns von der Ordnerstruktur lösen und alles zusammen mischen.
-    Hier werden nun alle Dateien aus allen Ordner einem Array hinzugefügt. So ensteht ein großes Array mit
-    allen Dateien.
-    
-    Erwartet als Parameter die Datenframes mit den Labels. Und gibt einen Daten_Vektor zurück (gelöst von der Ordnerstruktur)
-    """
     daten_vektor=[]
     for i in range(len(FOL)):
         daten_vektor.append(FOL[i])
@@ -159,60 +139,61 @@ def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,ST
         daten_vektor.append(STD[i])
     for i in range(len(WAL)):
         daten_vektor.append(WAL[i])
-    #Hier wird das Array auch noch einmal gemischt, um Stürze und ADL nicht direkt hintereinander zu haben.
+    #Shuffle array
     random.shuffle(daten_vektor)
     return daten_vektor
+ ```
+## Create Matrix
+Here we create a data matrix. At position 0, the sensor data was insert at position 1, the labels were insert.
+The matrix looks something like this:
 
+Position:      0            1
+             Dataframes    Label
+             
+ ```
 def erstelle_daten_matrix(daten_vektor):
-    """
-    Hier wird eine Matrix erstellt. An Postition 0 werden die Sensordaten eingefügt (immer noch als Dataframe)
-    An Position 1 wird das Label eingefügt.
-    Die Matrix sieht ungefähr so aus:
-    Position:      0            1
-                 Datenframes   passendes Label bezogen auf die ganze Datei
-    """
     daten_matrix=([],[])
     for i in range(len(daten_vektor)):
         daten_matrix[0].append(daten_vektor[i][["acc_x","acc_y","acc_z","gyro_x","gyro_y","gyro_z","azimuth","pitch","roll"]])
         daten_matrix[1].append(daten_vektor[i].at[0,"Label"]) # Aus der ganzen Spalte wird nur das Label rausgeholt 
         
     return daten_matrix
-
+ ```
+## Reconstruct the data structure
+We have to reconstruct our data structure so that our model can learn with the data. 
+ ```
 def daten_umwandeln():
     test=[],[]
     train=[],[]
-    test = daten_matrix[0][:400],daten_matrix[1][:400] #Hier erfolgt der Split in Train und Test Data
+    test = daten_matrix[0][:400],daten_matrix[1][:400] # Test and traindata split
     train = daten_matrix[0][400:],daten_matrix[1][400:] 
     
     print("Aufteilen Erfolgreich! Anzahl der Trainingsdaten:{0} und der Testdaten:{1} ".format(len(train[0]),len(test[0]))) 
-    """
-    Dieser Teil ist etwas umständlich. Hier werden die Werte aus dem Dataframe wieder raushgeholt und in einem 
-    Array gespeichert
-    """
+
     train_data=[]
     labels=[]
     test_data=[]
     test_labels=[]
 
-    for i in range(len(train[0])): #für alle Datenpunkte im Datenframe
-        train_data.append(train[0][i].values) #Wird der Wert in das Array geschrieben
+    for i in range(len(train[0])):
+        train_data.append(train[0][i].values)
 
 
-    for i in range(len(train[1])): # und genau das gleiche für die Labels
+    for i in range(len(train[1])):
         labels.append(train[1][i])
     labels=np.array(labels)
-    for i in range(len(test[0])): # und für die Testdaten
+    for i in range(len(test[0])):
         test_data.append(test[0][i].values) 
-    for i in range(len(test[1])): # und genau das gleiche für die Labels
+    for i in range(len(test[1])): 
         test_labels.append(test[1][i])
     test_labels=np.array(test_labels)
     return train_data,labels,test_data, test_labels
-
+ ```
+## Construct the model
+Here we create our Keras model. The hyperparameters we have through a self-written program, which
+creates them randomly and then it tests the accuracy.
 def train_model(train_data,labels,test_data, test_labels):
-    """
-    Hier wird ein Keras Model definiert. Die Hyperparameter habe wir durch ein selbstgeschriebenes Programm, welches
-    diese zufällig erstellt und dann die Acc prüft, gefunden.
-    """
+ ```
     model = keras.Sequential([     
     keras.layers.Flatten(), 
     keras.layers.Masking(mask_value=0.0),
@@ -222,9 +203,7 @@ def train_model(train_data,labels,test_data, test_labels):
     optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.003)
     model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     
-    
-    
-    #Hier werden alle Daten auf eine Länge gebracht. Ansonsten kann das Model diese nicht verarbeiten
+    #We had to bring every array to the same length
     train_data=keras.preprocessing.sequence.pad_sequences(train_data, maxlen=None, dtype='int32', padding='pre', truncating='pre', value=0.0)
     train_data=np.array(train_data)
     test_data=keras.preprocessing.sequence.pad_sequences(test_data, maxlen=train_data.shape[1], dtype='int32', padding='pre', truncating='pre', value=0.0)
@@ -235,13 +214,17 @@ def train_model(train_data,labels,test_data, test_labels):
     model.summary()  
     print(test_labels.shape,labels.shape)
     print(test_data.shape,train_data.shape)
-    #Model mit den Test-Daten testen
+    # Test Model
     test_loss, test_acc = model.evaluate(test_data, test_labels) 
     print('Test accuracy:', test_acc) 
     print('Test loss:', test_loss)
     visualization(history)
+    #Save it
     model.save('simple_mlp5500.pb') 
-    
+ ```
+## Visualization
+Plotting a graph, we can rate our model.
+ ```
 def visualization(history):
     import matplotlib.pyplot as plt
     # Graphen plotten um das Model besser bewerten zu können
@@ -261,10 +244,12 @@ def visualization(history):
     plt.xlabel('Epoch')
     plt.legend(['Train', 'Test'], loc='upper left')
     plt.show()
-    
-# Alle Funktionen werden ausgeführt
+  ```   
+# Run all functions
+ ```
+print("GPU Available: ", tf.test.is_gpu_available()) #GPU rendering speeds up the process
 FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=einlesen()
-   
+
 FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
 
 daten_vektor=erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
