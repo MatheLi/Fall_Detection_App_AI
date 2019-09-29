@@ -11,7 +11,7 @@ from keras.initializers import glorot_uniform
 import time
 ```
 ## Wait for new Data
-In this function we wait for new transfered data from the app. 
+In this function, we wait for newly transferred data from the app. 
 ```
 def einlesen(model):
     pfad="\\Filezilla"
@@ -49,7 +49,7 @@ def einlesen(model):
         
   ```      
 ## Conect two files
-We have to connect two files because we want to create 2000 single files of one file. Each one start with another timestamp.
+We have to connect two files because we want to create 2000 single files of one file. Each one starts with another timestamp.
 ```
 def daten_verarbeitung(last_data,last_data2):
     test_data=[]
@@ -66,7 +66,7 @@ def daten_verarbeitung(last_data,last_data2):
    ```     
 
 ## Check the data
-We test all elements of the array with our model and print the mean result. Later we will sent it back to the mobile.
+We test all elements of the array with our model and print the mean result. Later we will send it back to the mobile.
 ```
 def daten_prufen(model,test_data):
     labels=[]    
@@ -94,7 +94,7 @@ def daten_prufen(model,test_data):
         print("Abschließendes Label 0", np.mean(labels))
 ```
 ## Load Model and start program
-First of all we have to load the model.
+First of all, we have to load the model.
 ```
 with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
     model =load_model('Model.pb') 
