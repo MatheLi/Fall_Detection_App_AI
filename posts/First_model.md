@@ -1,5 +1,5 @@
 # Train the model
-
+The program was completely written by us.
 ## Importing libaries
 ```
 import tensorflow as tf
