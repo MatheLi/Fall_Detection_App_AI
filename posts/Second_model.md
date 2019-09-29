@@ -93,7 +93,7 @@ def daten_prufen(model,test_data):
     else:
         print("Abschließendes Label 0", np.mean(labels))
 ```
-#Load Model and start program
+## Load Model and start program
 First of all we have to load the model.
 ```
 with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
