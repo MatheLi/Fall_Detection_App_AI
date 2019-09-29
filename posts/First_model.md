@@ -12,7 +12,7 @@ import random
 
 ## Import dataset
 Here all .csv files are read into a Panda dataframe. There will be 3 attempts each of 67
-subjects read. It also checks if there is the path at all, because there are always missing files.
+subjects read. It also checks if there is the path at all because there are always missing files.
     
 The function returns Panda's data frame - sorted by folder names.
 ```
