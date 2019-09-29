@@ -11,7 +11,7 @@ import random
 ```
 
 ## Import dataset
-Here all .csv files are read into a Panda dataframe. There will be 3 attempts each of 67
+Here all .csv files are read into a Panda DataFrame. There will be 3 attempts each of 67
 subjects read. It also checks if there is the path at all because there are always missing files.
     
 The function returns Panda's data frame - sorted by folder names.
@@ -58,12 +58,12 @@ def einlesen():
 
 ## Adding labels to the file
 We add the column "Label" to each file. We still know at this point, whether
-if it is a fall or a ADL. first of all, we only want to predict whether has fallen and not the exact fall style.   
+if it is a fall or an ADL. first of all, we only want to predict whether has fallen and not the exact fall style.   
 That's why we have two labels:
 
 1 = fall 0 = ADL
 
-The function expects as parameters the Pandas dataframes. It returns the data (still as a dataframe), with the extra column     "Label" which is completely filled with "1" or "0".
+The function expects as parameters the Pandas DataFrames. It returns the data (still as a DataFrame), with the extra column     "Label" which is completely filled with "1" or "0".
  ```
 def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
 
@@ -105,7 +105,7 @@ def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL):
 Since we now also have the label in the data frames, we can detach ourselves from the folder structure and mix everything   together.
 Here all files from all folders are added to an array. 
 
-Expects as parameters the dataframes with the labels and returns a data_vector.
+Expects as parameters the DataFrames with the labels and returns a data_vector.
 ```
 def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
     daten_vektor=[]
@@ -144,11 +144,11 @@ def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,ST
     return daten_vektor
  ```
 ## Create Matrix
-Here we create a data matrix. At position 0, the sensor data was insert at position 1, the labels were insert.
+Here we create a data matrix. At position 0, the sensor data was inserted at position 1, the labels were inserted.
 The matrix looks something like this:
 
 Position:      0            1
-             Dataframes    Label
+             DataFrames    Label
              
  ```
 def erstelle_daten_matrix(daten_vektor):
@@ -190,8 +190,7 @@ def daten_umwandeln():
     return train_data,labels,test_data, test_labels
  ```
 ## Construct the model
-Here we create our Keras model. The hyperparameters we have through a self-written program, which
-creates them randomly and then it tests the accuracy.
+
  ```
 def train_model(train_data,labels,test_data, test_labels):
 
