@@ -192,8 +192,9 @@ def daten_umwandeln():
 ## Construct the model
 Here we create our Keras model. The hyperparameters we have through a self-written program, which
 creates them randomly and then it tests the accuracy.
-def train_model(train_data,labels,test_data, test_labels):
  ```
+def train_model(train_data,labels,test_data, test_labels):
+
     model = keras.Sequential([     
     keras.layers.Flatten(), 
     keras.layers.Masking(mask_value=0.0),
@@ -223,7 +224,7 @@ def train_model(train_data,labels,test_data, test_labels):
     model.save('simple_mlp5500.pb') 
  ```
 ## Visualization
-Plotting a graph, we can rate our model.
+Plotting a graph, in order that we can rate our model.
  ```
 def visualization(history):
     import matplotlib.pyplot as plt
