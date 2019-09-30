@@ -61,54 +61,30 @@ def einlesen():
             if os.path.exists(pfad+"\Annotated Data\FOL\FOL_{0}_{1}_annotated.csv".format(i,a))
             ]
             
-    [the same with all other files..]
+    [the same with all other types of falls and ADLs..]
     return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
 ```
 
 ## Adding labels to the file
 We add the column "Label" to each file. We still know at this point, whether
-if it is a fall or an ADL. first of all, we only want to predict whether has fallen and not the exact fall style.   
+if it is a fall or an ADL. First of all, we only want to predict whether the person has fallen and not the exact fall style.   
 That's why we have two labels:
 
 1 = fall 0 = ADL
 
-The function expects as parameters the Pandas DataFrames. It returns the data (still as a DataFrame), with the extra column     "Label" which is completely filled with "1" or "0".
+The function expects as parameters the Pandas DataFrames and their label. It returns the data (still as a DataFrame), with the extra column "Label" which is completely filled with "1" or "0".
  ```
-def label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
+def label(data, is_fall):
+        # Falls (1)
+   if is_fall == 1:
+       for i in range(len(data)):
+           data[i]["Label"]=1  
+        #ADLs (0)        
+   else: 
+       for i in range(len(data)):
+           data[i]["Label"]=0
 
-# Falls (1)
-    for i in range(len(FOL)):
-        FOL[i]["Label"]=1
-    for i in range(len(FKL)):
-        FKL[i]["Label"]=1
-    for i in range(len(BSC)):
-        BSC[i]["Label"]=1
-    for i in range(len(SDL)):
-        SDL[i]["Label"]=1
-    #ADLs (0)
-    for i in range(len(CHU)):
-        CHU[i]["Label"]=0
-    for i in range(len(SCH)):
-        SCH[i]["Label"]=0
-    for i in range(len(STU)):
-        STU[i]["Label"]=0
-    for i in range(len(STN)):
-        STN[i]["Label"]=0
-    for i in range(len(CSI)):
-        CSI[i]["Label"]=0   
-    for i in range(len(CSO)):
-        CSO[i]["Label"]=0
-    for i in range(len(JOG)):
-        JOG[i]["Label"]=0
-    for i in range(len(JUM)):
-        JUM[i]["Label"]=0
-    for i in range(len(SIT)):
-        SIT[i]["Label"]=0
-    for i in range(len(STD)):
-        STD[i]["Label"]=0
-    for i in range(len(WAL)):
-        WAL[i]["Label"]=0
-    return FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL
+   return data
 ```
 ## Create a data vector
 Since we now also have the label in the data frames, we can detach ourselves from the folder structure and mix everything   together.
@@ -116,38 +92,12 @@ Here all files from all folders are added to an array.
 
 Expects as parameters the DataFrames with the labels and returns a data_vector.
 ```
-def erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL): 
+def erstelle_daten_vektor(list): 
     daten_vektor=[]
-    for i in range(len(FOL)):
-        daten_vektor.append(FOL[i])
-    for i in range(len(FKL)):
-        daten_vektor.append(FKL[i])
-    for i in range(len(BSC)):
-        daten_vektor.append(BSC[i])
-    for i in range(len(SDL)):
-        daten_vektor.append(SDL[i])
-    for i in range(len(CHU)):
-        daten_vektor.append(CHU[i])
-    for i in range(len(SCH)):
-        daten_vektor.append(SCH[i])
-    for i in range(len(STU)):
-        daten_vektor.append(STU[i])
-    for i in range(len(STN)):
-        daten_vektor.append(STN[i])
-    for i in range(len(CSI)):
-        daten_vektor.append(CSI[i])
-    for i in range(len(CSO)):
-        daten_vektor.append(CSO[i])
-    for i in range(len(JOG)):
-        daten_vektor.append(JOG[i])
-    for i in range(len(JUM)):
-        daten_vektor.append(JUM[i])
-    for i in range(len(SIT)):
-        daten_vektor.append(SIT[i])
-    for i in range(len(STD)):
-        daten_vektor.append(STD[i])
-    for i in range(len(WAL)):
-        daten_vektor.append(WAL[i])
+    for item in list: 
+        for i in range(len(item)): 
+            daten_vektor.append(item[i])
+    
     #Shuffle array
     random.shuffle(daten_vektor)
     return daten_vektor
@@ -258,14 +208,30 @@ def visualization(history):
  ```
 print("GPU Available: ", tf.test.is_gpu_available()) #GPU rendering speeds up the process
 FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=einlesen()
+#Label all the data
 
-FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL=label(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
+FOL=label(FOL,1)   
+FKL=label(FKL,1)
+BSC=label(BSC,1)
+SDL=label(SDL,1)
+CHU=label(CHU,0)
+SCH=label(SCH,0)
+STU=label(STU,0)
+STN=label(STN,0)
+CSI=label(CSI,0)
+CSO=label(CSO,0)
+JOG=label(JOG,0)
+JUM=label(JUM,0)
+SIT=label(SIT,0)
+STD=label(STD,0)
+WAL=label(WAL,0)
 
-daten_vektor=erstelle_daten_vektor(FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL)
-
+daten_vektor=erstelle_daten_vektor([FOL,FKL,BSC,SDL,CHU,SCH,STU,STN,CSI,CSO,JOG,JUM,SIT,STD,WAL])
 daten_matrix=erstelle_daten_matrix(daten_vektor)
+
 train_data, labels,test_data, test_labels=daten_umwandeln()
 train_model(train_data,labels, test_data, test_labels)
+
 
 ```
 
