@@ -11,10 +11,19 @@ import random
 ```
 
 ## Import dataset
-Here all .csv files are read into a Panda DataFrame. There will be 3 attempts each of 67
+Here all .csv files are read into a Panda DataFrame.
+The dataset differs between different types of falls and ADLs (Activities of daily living).
+
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Bild_datensatz_types_adl_falls.png?raw=true)
+
+This picture shows an overview of the falls and ADls.
+
+There will be 3 attempts each of 67
 subjects read. It also checks if there is the path at all because there are always missing files.
     
 The function returns Panda's data frame - sorted by folder names.
+
+
 ```
 """
 DATASET: G. Vavoulas, M. Pediaditis, C. Chatzaki, E. G. Spanakis, M. Tsiknakis, The MobiFall Dataset: Fall Detection and Classification with a Smartphone, invited publication for the International Journal of Monitoring and Surveillance Technologies Research, pp 44-56, 2014, DOI:10.4018/ijmstr.201401010
