@@ -8,7 +8,7 @@ In my free time, I play sports. I have been playing tennis since I was 7 years o
 
 I also love to play piano, which I have been learning for more then 9 years.
 
-| **[Check Out My Projects](https://matheli.github.io/Matheli/post/2019-07-30-my-projects.html)** |
+| **[Check Out My Projects](./posts/The_team/Ma-The_projects.md)** |
 
 ### Gallery
 
