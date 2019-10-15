@@ -7,7 +7,7 @@ The app has different tasks. It records the gyroscope, accelerometer and orienta
 
 ## Create Files
 The program was completely written by us.
-In this part, we create a CSV-file. Furthermore, we name the different columns columns.
+In this part, we create a CSV-file. Furthermore, we name the different columns.
 ```
         File sdCard = Environment.getExternalStorageDirectory();
         File dir = new File(sdCard.getAbsolutePath() + "/sean");
