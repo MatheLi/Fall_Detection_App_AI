@@ -36,7 +36,7 @@ In addition, we wrote an extra script, which cuts all CSV-files, which were long
 ## Citation to use the dataset: 
 [Website](https://bmi.teicrete.gr/en/home/)
 
-[Dataset Download](https://drive.google.com/file/d/0B5VcW5yHhWhieWc5WHlIN0twcUE/edit)
+[Dataset Download](https://drive.google.com/file/d/0B5VcW5yHhWhid0pDRFJMRXVuNnM/edit)
 
 G. Vavoulas, M. Pediaditis, E. Spanakis, M. Tsiknakis, The MobiFall Dataset:
 
