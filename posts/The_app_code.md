@@ -211,5 +211,5 @@ To put it in a nutshell our application doesn't waste system resources.
 
 
 
-| [Go back to homepage](https://matheli.github.io/BWKI/.) | [More project details](https://matheli.github.io/BWKI/posts/More%20details.html) |  [Code of the model](https://matheli.github.io/BWKI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/BWKI/posts/Second_model.html)  | [The dataset](https://matheli.github.io/BWKI/posts/The_dataset.html) | [Accuracy](https://matheli.github.io/BWKI/posts/Accuracy.html) | [The team](https://matheli.github.io/BWKI/posts/The_team/The_team.html) |
+| [Go back to homepage](https://matheli.github.io/Fall_Detection_App_AI/.) | [More project details](https://matheli.github.io/Fall_Detection_App_AI/posts/More%20details.html) |  [Code of the model](https://matheli.github.io/Fall_Detection_App_AI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/Fall_Detection_App_AI/posts/Second_model.html)  | [The dataset](https://matheli.github.io/Fall_Detection_App_AI/posts/The_dataset.html) | [Accuracy](https://matheli.github.io/Fall_Detection_App_AI/posts/Accuracy.html) | [The team](https://matheli.github.io/Fall_Detection_App_AI/posts/The_team/The_team.html) |
 
