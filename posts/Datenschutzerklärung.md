@@ -189,3 +189,8 @@ In diesem Abschnitt erhalten Sie eine Übersicht über die in dieser Datenschutz
     • Verarbeitung: "Verarbeitung" ist jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführte Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten. Der Begriff reicht weit und umfasst praktisch jeden Umgang mit Daten, sei es das Erheben, das Auswerten, das Speichern, das Übermitteln oder das Löschen. 
 Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas Schwenke
 
+
+
+| [Go back to homepage](https://matheli.github.io/Fall_Detection_App_AI/.) | [More project details](https://matheli.github.io/Fall_Detection_App_AI/posts/More%20details.html) |  [Code of the model](https://matheli.github.io/Fall_Detection_App_AI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/Fall_Detection_App_AI/posts/Second_model.html)  | [The app](https://matheli.github.io/Fall_Detection_App_AI/posts/The_app_code.html) | [The dataset](https://matheli.github.io/Fall_Detection_App_AI/posts/The_dataset.html) | [Accuracy](https://matheli.github.io/Fall_Detection_App_AI/posts/Accuracy.html) | [The team](https://matheli.github.io/Fall_Detection_App_AI/posts/The_team/The_team.html) |
+
+| [Imprint disclaimer](https://matheli.github.io/Fall_Detection_App_AI/posts/Impressum_Haftungsauschluss) |
