@@ -27,6 +27,7 @@ Inhaltsübersicht
 
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
     
+![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/kontakt.png?raw=true)
 
  Impressum: https://github.com/MatheLi/Fall_Detection_App_AI/blob/master/posts/Impressum_Haftungsauschluss.md
 
