@@ -28,7 +28,7 @@ Inhaltsübersicht
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
     
 
- Impressum:[](https://github.com/MatheLi/Fall_Detection_App_AI/blob/master/posts/Impressum_Haftungsauschluss.md)
+ Impressum: https://github.com/MatheLi/Fall_Detection_App_AI/blob/master/posts/Impressum_Haftungsauschluss.md
 
 Vertretungsberechtigte Personen:
 
@@ -36,9 +36,7 @@ Vertretungsberechtigte Personen:
 
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
 
-Impressum: 
-
-
+ 
 Übersicht der Verarbeitungen
 Die nachfolgende Übersicht fasst die Arten der verarbeiteten Daten und die Zwecke ihrer Verarbeitung zusammen und verweist auf die betroffenen Personen.
 Arten der verarbeiteten Daten
@@ -66,6 +64,7 @@ Zwecke der Verarbeitung
     • Tracking (z.B. interessens-/verhaltensbezogenes Profiling, Nutzung von Cookies).
     • Vertragliche Leistungen und Service.
     • Verwaltung und Beantwortung von Anfragen.
+    
 Maßgebliche Rechtsgrundlagen
 Im Folgenden teilen wir die Rechtsgrundlagen der Datenschutzgrundverordnung (DSGVO), auf deren Basis wir die personenbezogenen Daten verarbeiten, mit. Bitte beachten Sie, dass zusätzlich zu den Regelungen der DSGVO die nationalen Datenschutzvorgaben in Ihrem bzw. unserem Wohn- und Sitzland gelten können.
     • Einwilligung (Art. 6 Abs. 1 S. 1 lit. a DSGVO) - Die betroffene Person hat ihre Einwilligung in die Verarbeitung der sie betreffenden personenbezogenen Daten für einen spezifischen Zweck oder mehrere bestimmte Zwecke gegeben.
@@ -188,3 +187,4 @@ In diesem Abschnitt erhalten Sie eine Übersicht über die in dieser Datenschutz
     • Verantwortlicher: Als "Verantwortlicher“ wird die natürliche oder juristische Person, Behörde, Einrichtung oder andere Stelle, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten entscheidet, bezeichnet. 
     • Verarbeitung: "Verarbeitung" ist jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführte Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten. Der Begriff reicht weit und umfasst praktisch jeden Umgang mit Daten, sei es das Erheben, das Auswerten, das Speichern, das Übermitteln oder das Löschen. 
 Erstellt mit kostenlosem Datenschutz-Generator.de von Dr. Thomas Schwenke
+
