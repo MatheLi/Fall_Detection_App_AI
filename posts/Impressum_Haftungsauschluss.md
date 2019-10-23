@@ -11,7 +11,7 @@ Mario Schweikert
 
 # Kontakt: 
 
-
+![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/kontakt.png?raw=true)
 
 
 # Verantwortliche für den Inhalt nach § 55 Abs. 2 RStV:
