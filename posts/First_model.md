@@ -237,3 +237,4 @@ train_model(train_data,labels, test_data, test_labels)
 
 | [Go back to homepage](https://matheli.github.io/Fall_Detection_App_AI/.) | [More project details](https://matheli.github.io/Fall_Detection_App_AI/posts/More%20details.html) | [Code of the evaluation program ](https://matheli.github.io/Fall_Detection_App_AI/posts/Second_model.html) | [The app](https://matheli.github.io/Fall_Detection_App_AI/posts/The_app_code.html) | [Accuracy](https://matheli.github.io/Fall_Detection_App_AI/posts/Accuracy.html) | [The dataset](https://matheli.github.io/Fall_Detection_App_AI/posts/The_dataset.html) | [The team](https://matheli.github.io/Fall_Detection_App_AI/posts/The_team/The_team.html) |
 
+| [Data protection](https://matheli.github.io/Fall_Detection_App_AI/posts/Datenschutzerkl%C3%A4rung) | [Imprint disclaimer](https://matheli.github.io/Fall_Detection_App_AI/posts/Impressum_Haftungsauschluss) |
