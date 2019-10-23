@@ -48,3 +48,4 @@ Healthcare-Bioinformatics, Chania, Greece, 2013, DOI:10.1109/BIBE.2013.6701629.
 
 | [Go back to homepage](https://matheli.github.io/Fall_Detection_App_AI/.) | [More project details](https://matheli.github.io/Fall_Detection_App_AI/posts/More%20details.html) |  [Code of the model](https://matheli.github.io/Fall_Detection_App_AI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/Fall_Detection_App_AI/posts/Second_model.html)  | [The app](https://matheli.github.io/Fall_Detection_App_AI/posts/The_app_code.html) | [Accuracy](https://matheli.github.io/Fall_Detection_App_AI/posts/Accuracy.html) | [The team](https://matheli.github.io/Fall_Detection_App_AI/posts/The_team/The_team.html) |
 
+| [Data protection](https://matheli.github.io/Fall_Detection_App_AI/posts/Datenschutzerkl%C3%A4rung) | [Imprint disclaimer](https://matheli.github.io/Fall_Detection_App_AI/posts/Impressum_Haftungsauschluss) |
