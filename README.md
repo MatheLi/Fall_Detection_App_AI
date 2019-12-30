@@ -12,6 +12,6 @@ If the system receives no "answer" by the mobile carrier, it is very likely that
 *Source: https://pixabay.com/de/vectors/a-ich-ai-anatomie-2729794/ Date: 27.09.19
 
 
-| [More poject details](https://matheli.github.io/Fall_Detection_App_AI/posts/More%20details.html) | [Code of the model](https://matheli.github.io/Fall_Detection_App_AI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/Fall_Detection_App_AI/posts/Second_model.html) | [The app](./posts/The_app_code.md) | [The dataset](./posts/The_dataset.md) | [Accuracy](./posts/Accuracy.md) | [The team](./posts/The_team/The_team.md) | [Our Video](.posts/The_Video.md) |
+| [More poject details](https://matheli.github.io/Fall_Detection_App_AI/posts/More%20details.html) | [Code of the model](https://matheli.github.io/Fall_Detection_App_AI/posts/First_model.html) | [Code of the evaluation program ](https://matheli.github.io/Fall_Detection_App_AI/posts/Second_model.html) | [The app](./posts/The_app_code.md) | [The dataset](./posts/The_dataset.md) | [Accuracy](./posts/Accuracy.md) | [The team](./posts/The_team/The_team.md) | [Our Video](./posts/The_Video.md) |
 
 | [Data protection](https://matheli.github.io/Fall_Detection_App_AI/posts/Datenschutzerkl%C3%A4rung) | [Imprint disclaimer](https://matheli.github.io/Fall_Detection_App_AI/posts/Impressum_Haftungsauschluss) |
