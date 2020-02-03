@@ -1,5 +1,5 @@
 ## Impressum Angaben gemäß § 5 TMG
-
+Dieses Impressum gilt auch für unsere Youtube-Präsenz.
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Maria_Theresa.png?raw=true)
 
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
