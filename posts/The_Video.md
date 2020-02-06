@@ -1,6 +1,6 @@
 Watch our video about the projekt:
 
-[Click here to see the video](https://www.youtube.com/watch?v=y_T5i37k7SE&feature=youtu.be)
+[Click here to see the video](https://m.youtube.com/watch?v=7PSs-GmveFI)
 
 
 
