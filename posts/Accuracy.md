@@ -1,6 +1,6 @@
 # Accuracy of our model
 ### Chart and train accuracy with "softsign" and "softmax" 5000 epochs (Overfitting) 
-![](https://github.com/MareSeestern/BWKI-Fall-Detection/blob/master/Infos_Texte/5000_epoches_ACC_Overfitted.png?raw=true)
+![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/5000_epoches_ACC_Overfitted.png)
 
 ![](https://github.com/MareSeestern/BWKI-Fall-Detection/blob/master/Infos_Texte/5000_epoches_Graphen_Overfitted.png?raw=true)
 
