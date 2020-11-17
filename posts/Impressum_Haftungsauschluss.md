@@ -1,8 +1,7 @@
 Dieses Impressum gilt auch für unsere Youtube-Präsenz.
 ## Impressum Angaben gemäß § 5 TMG
 
-![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Maria_Theresa.png?raw=true)
-
+Maria-Theresa Licka
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
     
 # Vertreten durch: 
@@ -18,7 +17,7 @@ Mario Schweikert
 
 # Verantwortliche für den Inhalt nach § 55 Abs. 2 RStV:
 
-![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Maria_Theresa.png?raw=true)
+Maria-Theresa Licka
 
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
 
