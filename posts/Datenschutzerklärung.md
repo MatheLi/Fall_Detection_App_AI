@@ -23,7 +23,7 @@ Inhaltsübersicht
 # Verantwortlicher
  
  
-![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Maria_Theresa.png?raw=true)
+Maria-Theresa Licka
 
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
     
@@ -33,7 +33,7 @@ Inhaltsübersicht
 
 Vertretungsberechtigte Personen:
 
-![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Maria_Theresa.png?raw=true)
+Maria-Theresa Licka
 
 ![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
 
