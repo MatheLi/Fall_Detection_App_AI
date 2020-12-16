@@ -1,8 +1,14 @@
 Dieses Impressum gilt auch für unsere Youtube-Präsenz.
 ## Impressum Angaben gemäß § 5 TMG
 
-Maria-Theresa Licka
-![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
+
+Mario Schweikert & Maria-Theresa
+
+c/o
+
+Jugend forscht AG
+Alter Viehberg 1
+67434 Neustadt 
     
 # Vertreten durch: 
 
@@ -17,9 +23,14 @@ Mario Schweikert
 
 # Verantwortliche für den Inhalt nach § 55 Abs. 2 RStV:
 
-Maria-Theresa Licka
 
-![](https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Adresse_Mario_Schweikert.png?raw=true)
+Mario Schweikert & Maria-Theresa
+
+c/o
+
+Jugend forscht AG
+Alter Viehberg 1
+67434 Neustadt 
 
 ## Haftungsausschluss: 
 # Haftung für Inhalte
