@@ -8,10 +8,10 @@
 <table>
 <tr>
 <td>
-<img src="https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true"width=500 height=480>
+<img src="https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true" width=500 height=480>
 </td>
 <td>
-<img src="https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/MariaTheresa.jpg"width=700 height=480>
+<img src="https://raw.githubusercontent.com/MatheLi/BWKI/master/res/MariaTheresa.jpg?raw=true"width=700 height=480>
 </td>
 </tr>
 </table>
