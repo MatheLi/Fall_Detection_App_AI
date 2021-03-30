@@ -7,10 +7,10 @@
 <table>
 <tr>
 <td>
-<img src="https://matheli.github.io/Fall_Detection_App_AI/res/Mario.png"width=500 height=480>
+<img src="https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/Mario.png"width=500 height=480>
 </td>
 <td>
-<img src="https://matheli.github.io/Fall_Detection_App_AI/res/MariaTheresa.jpg"width=700 height=480>
+<img src="https://raw.githubusercontent.com/MatheLi/Fall_Detection_App_AI/master/res/MariaTheresa.jpg"width=700 height=480>
 </td>
 </tr>
 </table>
