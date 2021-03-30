@@ -1,6 +1,6 @@
 Watch our videos about the projekt:
 
-<iframe src="https://www.swr.de/~embed/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<image src="https://www.swr.de/~embed/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html" width="640" height="360"></image>
 
 
 
