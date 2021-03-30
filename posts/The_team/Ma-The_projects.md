@@ -1,6 +1,8 @@
-## My Projects (01.01.2021):
+## My Projects (30.03.2021):
 * 2021, 3. and 1. prize winner (Landeswettbewerb) Jugend forscht
 * 2021, 1. and 1. prize winner (Regionalwettbewerb) Jugend forscht
+* ZONTA, Young Women in Public Affairs Award 3rd. place, Area 02
+* ZONTA, Young Women in Public Affairs Award winner, ZONTA Club Heidelberg
 * 2020, Finalist and Jury prize winner at the [Bundeswettbewerb Künstliche Intelligenz](https://bw-ki.de)
 * 2020, 3. and 1. prize winner (regional) Jugend forscht
 * 09.2019 - 2020, [student for informatics at the Karlsruher Institute of Technology](https://www.informatik.kit.edu/2004.php)
