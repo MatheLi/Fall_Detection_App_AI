@@ -2,13 +2,7 @@ Watch our videos about the projekt:
 
 
 
-<video>
-  <source src="https://avdlswr-a.akamaihd.net/swr/swraktuell/rp/tv/1432761.sm.mp4" type="video/mp4">
-
-Your browser does not support the video tag.
-</video> 
-
-[Source: https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html](https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html)
+[Click here to see our SWR video: https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html](https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html)
 
 [Click here to see our presentation-slides at the AI CON](https://www.youtube.com/watch?v=Fi_lD6dlfEU)
 
