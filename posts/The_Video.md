@@ -1,8 +1,8 @@
 Watch our videos about the projekt:
 
-![]()
-
 [Click here to see our presentation-slides at the AI CON](https://www.youtube.com/watch?v=Fi_lD6dlfEU)
+
+![Click here to see the report and video with the SWR](https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html)
 
 [Click here to see the project information](https://www.youtube.com/watch?v=XQqo0KjTO1Q&feature=youtu.be)
 
