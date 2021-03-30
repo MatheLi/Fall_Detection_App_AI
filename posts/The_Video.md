@@ -1,6 +1,6 @@
 Watch our videos about the projekt:
 
-![](https://github.com/MatheLi/Fall_Detection_App_AI/blob/master/res/SWR.mp4?raw=true)
+![](https://github.com/MatheLi/Fall_Detection_App_AI/raw/master/res/SWR.mp4)
 
 
 
