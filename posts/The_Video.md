@@ -1,6 +1,10 @@
 Watch our videos about the projekt:
 
-![Video with the SWR](./posts/1432761.sm (2).mp4)
+<videocontrols>
+    
+      <source src="./posts/1432761.sm (2).mp4" type=video/mp4>
+    </video>
+
 
 [Source: https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html](https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html)
 
