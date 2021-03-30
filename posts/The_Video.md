@@ -1,8 +1,7 @@
 Watch our videos about the projekt:
 
-<video>
-    <source src="./posts/1432761.sm (2).mp4" type=video/mp4>
-</video>
+![](https://github.com/MatheLi/Fall_Detection_App_AI/blob/master/res/SWR.mp4)
+
 
 
 [Source: https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html](https://www.swr.de/swraktuell/rheinland-pfalz/landessieger-von-jugend-forscht-gekuert-100.html)
