@@ -5,8 +5,8 @@
 
 # Picture of us
 
-![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/MariaTheresa.jpg?raw=true)
-![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true)
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/MariaTheresa.jpg?raw=true) {width=700 height=480}
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true){width=700 height=480}
 
 
 
