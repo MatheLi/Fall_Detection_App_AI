@@ -1,6 +1,10 @@
-Watch our video about the projekt:
+Watch our videos about the projekt:
 
-[Click here to see the video](https://www.youtube.com/watch?v=XQqo0KjTO1Q&feature=youtu.be)
+![]()
+
+[Click here to see our presentation-slides at the AI CON](https://www.youtube.com/watch?v=Fi_lD6dlfEU)
+
+[Click here to see the project information](https://www.youtube.com/watch?v=XQqo0KjTO1Q&feature=youtu.be)
 
 
 
