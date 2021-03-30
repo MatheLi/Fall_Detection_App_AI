@@ -7,10 +7,10 @@
 <table>
 <tr>
 <td>
-<img src="https://matheli.github.io/Fall_Detection_App_AI/res/Mario.png">
+<img src="https://matheli.github.io/Fall_Detection_App_AI/res/Mario.png"width=270 height=800>
 </td>
 <td>
-<img src="https://matheli.github.io/Fall_Detection_App_AI/res/MariaTheresa.jpg">
+<img src="https://matheli.github.io/Fall_Detection_App_AI/res/MariaTheresa.jpg"width=270 height=800>
 </td>
 </tr>
 </table>
