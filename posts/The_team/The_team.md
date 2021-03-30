@@ -5,12 +5,10 @@
 
 # Picture of us
 
-<tabel>
-  <tr>
-    <td>
-      ![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true)</td></tr></tabel>
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true)
 
-<img src="https://raw.githubusercontent.com/MatheLi/BWKI/master/res/MariaTheresa.jpg?raw=true"width=700 height=480>
+![](https://raw.githubusercontent.com/MatheLi/BWKI/master/res/MariaTheresa.jpg?raw=true)
+
 
 
 
