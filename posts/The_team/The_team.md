@@ -8,7 +8,7 @@
 <table>
 <tr>
 <td>
-<img src="https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true" width=500 height=480>
+![] https://raw.githubusercontent.com/MatheLi/BWKI/master/res/Mario.png?raw=true
 </td>
 <td>
 <img src="https://raw.githubusercontent.com/MatheLi/BWKI/master/res/MariaTheresa.jpg?raw=true"width=700 height=480>
