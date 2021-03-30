@@ -4,8 +4,16 @@
 ### [Mario Schweikert](./Mario.md)
 
 # Picture of us
-![](...)
-
+<table>
+<tr>
+<td>
+<img src="https://matheli.github.io/Fall_Detection_App_AI/res/Mario.png">
+</td>
+<td>
+<img src="https://matheli.github.io/Fall_Detection_App_AI/res/MariaTheresa.jpg">
+</td>
+</tr>
+</table>
 
 
 
