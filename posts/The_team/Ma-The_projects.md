@@ -1,8 +1,8 @@
 ## My Projects (01.01.2021):
-*2021, 3. and 1. prize winner (Landeswettbewerb) Jugend forscht
-*2021, 1. and 1. prize winner (Regionalwettbewerb) Jugend forscht
-*2020, Finalist and Jury prize winner at the [Bundeswettbewerb Künstliche Intelligenz](https://bw-ki.de)
-*2020, 3. and 1. prize winner (regional) Jugend forscht
+* 2021, 3. and 1. prize winner (Landeswettbewerb) Jugend forscht
+* 2021, 1. and 1. prize winner (Regionalwettbewerb) Jugend forscht
+* 2020, Finalist and Jury prize winner at the [Bundeswettbewerb Künstliche Intelligenz](https://bw-ki.de)
+* 2020, 3. and 1. prize winner (regional) Jugend forscht
 * 09.2019 - 2020, [student for informatics at the Karlsruher Institute of Technology](https://www.informatik.kit.edu/2004.php)
 * 2016 - Present, [CyberMentor](https://www.cybermentor.de)
 * 2018 - Present, [Friends of EMBL membership at EMBL Teens](https://www.embl.de/leben/friends/en)
