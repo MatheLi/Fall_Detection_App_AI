@@ -2,7 +2,7 @@ Dieses Impressum gilt auch für unsere Youtube-Präsenz.
 ## Impressum Angaben gemäß § 5 TMG
 
 
-Mario Schweikert & Maria-Theresa
+Mario Schweikert & Maria-Theresa Licka
 
 c/o
 
@@ -24,7 +24,7 @@ Mario Schweikert
 # Verantwortliche für den Inhalt nach § 55 Abs. 2 RStV:
 
 
-Mario Schweikert & Maria-Theresa
+Mario Schweikert & Maria-Theresa Licka
 
 c/o
 
